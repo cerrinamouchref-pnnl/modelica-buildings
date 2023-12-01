@@ -5,18 +5,17 @@ block Pulse "Generate pulse signal of type Boolean"
     final min=Constants.small,
     final max=1,
     final unit = "1") = 0.5 "Width of pulse in fraction of period";
-  parameter Modelica.SIunits.Time period(
-    final min=Constants.small) "Time for one period";
+  parameter Modelica.Units.SI.Time period(final min=Constants.small)
+    "Time for one period";
   parameter Integer nPeriod=-1
     "Number of periods (< 0 means infinite number of periods)";
-  parameter Modelica.SIunits.Time startTime=0 "Time instant of first pulse";
+  parameter Modelica.Units.SI.Time startTime=0 "Time instant of first pulse";
   Interfaces.BooleanOutput y "Connector of Boolean output signal"
     annotation (Placement(transformation(extent={{100,-20},{140,20}})));
 
 protected
-  parameter Modelica.SIunits.Time Twidth=period*width
-    "Width of one pulse";
-  discrete Modelica.SIunits.Time pulseStart "Start time of pulse";
+  parameter Modelica.Units.SI.Time Twidth=period*width "Width of one pulse";
+  discrete Modelica.Units.SI.Time pulseStart "Start time of pulse";
 
 initial equation
   if time > startTime then

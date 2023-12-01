@@ -7,17 +7,14 @@ block LimPID
          Buildings.Controls.OBC.CDL.Types.SimpleController.PI "Type of controller";
   parameter Real k(
     min=0) = 1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti(min=Buildings.Controls.OBC.CDL.Constants.small) = 0.5
-    "Time constant of integrator block"
-    annotation (Dialog(enable=
-          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI or
-          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(
-    min=0) = 0.1
-    "Time constant of derivative block"
-    annotation (Dialog(enable=
-          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD or
-          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID));
+  parameter Modelica.Units.SI.Time Ti(min=Buildings.Controls.OBC.CDL.Constants.small)
+     = 0.5 "Time constant of integrator block" annotation (Dialog(enable=
+          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+           or controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID));
+  parameter Modelica.Units.SI.Time Td(min=0) = 0.1
+    "Time constant of derivative block" annotation (Dialog(enable=
+          controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD
+           or controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID));
   parameter Real yMax = 1 "Upper limit of output";
   parameter Real yMin = 0 "Lower limit of output";
   parameter Real wp(min=0) = 1 "Set-point weight for Proportional block (0..1)";

@@ -5,17 +5,14 @@ block PIDWithReset
          Buildings.Controls.OBC.CDL.Types.SimpleController.PI "Type of controller";
   parameter Real k(
     min=0) = 1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti(min=Constants.small) = 0.5
-    "Time constant of integrator block"
-    annotation (Dialog(enable=
-          controllerType == CDL.Types.SimpleController.PI or
-          controllerType == CDL.Types.SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(
-    min=0) = 0.1
-    "Time constant of derivative block"
-    annotation (Dialog(enable=
-          controllerType == CDL.Types.SimpleController.PD or
-          controllerType == CDL.Types.SimpleController.PID));
+  parameter Modelica.Units.SI.Time Ti(min=Constants.small) = 0.5
+    "Time constant of integrator block" annotation (Dialog(enable=
+          controllerType == CDL.Types.SimpleController.PI or controllerType ==
+          CDL.Types.SimpleController.PID));
+  parameter Modelica.Units.SI.Time Td(min=0) = 0.1
+    "Time constant of derivative block" annotation (Dialog(enable=
+          controllerType == CDL.Types.SimpleController.PD or controllerType ==
+          CDL.Types.SimpleController.PID));
   parameter Real yMax = 1 "Upper limit of output";
   parameter Real yMin = 0 "Lower limit of output";
   parameter Real wp(min=0) = 1 "Set-point weight for Proportional block (0..1)";
@@ -176,8 +173,8 @@ protected
 
 block Derivative "Block that approximates the derivative of the input"
   parameter Real k(unit="1") = 1 "Gains";
-  parameter Modelica.SIunits.Time T(min=1E-60)=0.01
-    "Time constant (T>0 required)";
+    parameter Modelica.Units.SI.Time T(min=1E-60) = 0.01
+      "Time constant (T>0 required)";
   parameter Real y_start=0 "Initial value of output (= state)"
     annotation(Dialog(group="Initialization"));
   Interfaces.RealInput u "Connector of Real input signal"

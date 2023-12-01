@@ -2,12 +2,11 @@ within Buildings.Fluid.CHPs.BaseClasses;
 model WarmUpLeaving
   "Model evaluating the condition for transitioning from warm-up to normal mode"
   extends Modelica.Blocks.Icons.Block;
-  parameter Modelica.SIunits.Time timeDelayStart
+  parameter Modelica.Units.SI.Time timeDelayStart
     "Time delay between activation and power generation";
-  parameter Modelica.SIunits.Temperature TEngNom
+  parameter Modelica.Units.SI.Temperature TEngNom
     "Nominal engine operating temperature";
-  parameter Modelica.SIunits.Power PEleMax=0
-    "Maximum power output"
+  parameter Modelica.Units.SI.Power PEleMax=0 "Maximum power output"
     annotation (Dialog(enable=not warmUpByTimeDelay));
   parameter Boolean warmUpByTimeDelay
     "If true, the plant will be in warm-up mode depending on the delay time, otherwise depending on engine temperature "

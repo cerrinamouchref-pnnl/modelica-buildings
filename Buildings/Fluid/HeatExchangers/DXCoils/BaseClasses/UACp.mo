@@ -6,17 +6,15 @@ model UACp "Calculates UA/Cp of the coil"
   constant Boolean homotopyInitialization = true "= true, use homotopy method"
     annotation(HideResult=true);
 
-  final parameter Modelica.SIunits.MassFraction XADP_nominal(
+  final parameter Modelica.Units.SI.MassFraction XADP_nominal(
     start=0.008,
     min=0,
     max=1.0,
     fixed=false)
     "Rated/Nominal mass fraction of air at coil apparatus dew point";
-  final parameter Modelica.SIunits.Temperature TADP_nominal(
-    start=273.15+10,
-    fixed=false) "Coil apparatus dew point temperature";
-  final parameter Modelica.SIunits.SpecificEnthalpy hADP_nominal(
-    fixed=false)
+  final parameter Modelica.Units.SI.Temperature TADP_nominal(start=273.15 + 10,
+      fixed=false) "Coil apparatus dew point temperature";
+  final parameter Modelica.Units.SI.SpecificEnthalpy hADP_nominal(fixed=false)
     "Enthalpy of air at coil apparatus dew point (at rated condition)";
   final parameter Real bypass_nominal(
     start=0.25,
@@ -30,9 +28,8 @@ model UACp "Calculates UA/Cp of the coil"
 
 protected
   constant Real phiADP_nominal = 1.0 "Realtive humidity at ADP";
-  final parameter Modelica.SIunits.AbsolutePressure psat_ADP_nominal(
-    start=1250,
-    fixed=false) "Saturation pressure";
+  final parameter Modelica.Units.SI.AbsolutePressure psat_ADP_nominal(start=
+        1250, fixed=false) "Saturation pressure";
 
 initial equation
 //------------------------Apparatus Dew Point (ADP) calculations---------------------//

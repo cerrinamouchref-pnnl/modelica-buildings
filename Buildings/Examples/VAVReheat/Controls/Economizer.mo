@@ -3,11 +3,11 @@ block Economizer "Controller for economizer"
   import Buildings.Examples.VAVReheat.Controls.OperationModes;
   parameter Boolean have_reset = false
     "Set to true to use an input signal for controller reset";
-  parameter Modelica.SIunits.Temperature TFreSet=277.15
+  parameter Modelica.Units.SI.Temperature TFreSet=277.15
     "Lower limit for mixed air temperature for freeze protection";
-  parameter Modelica.SIunits.TemperatureDifference dT(min=0.1) = 1
+  parameter Modelica.Units.SI.TemperatureDifference dT(min=0.1) = 1
     "Temperture offset to activate economizer";
-  parameter Modelica.SIunits.VolumeFlowRate VOut_flow_min(min=0)
+  parameter Modelica.Units.SI.VolumeFlowRate VOut_flow_min(min=0)
     "Minimum outside air volume flow rate";
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uRes if have_reset
@@ -50,7 +50,7 @@ block Economizer "Controller for economizer"
   Modelica.Blocks.Sources.Constant uni(k=1) "Unity signal"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   parameter Real k=1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti "Time constant of integrator block";
+  parameter Modelica.Units.SI.Time Ti "Time constant of integrator block";
   Modelica.Blocks.Interfaces.RealOutput yOA
     "Control signal for outside air damper" annotation (Placement(
         transformation(extent={{200,60},{240,100}}),iconTransformation(extent={{200,60},

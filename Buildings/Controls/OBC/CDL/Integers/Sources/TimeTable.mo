@@ -8,8 +8,7 @@ block TimeTable "Table look-up with respect to time with constant segments"
      final unit="1") = 1
     "Time scale of first table column. Set to 3600 if time in table is in hours";
 
-  parameter Modelica.SIunits.Time period
-    "Periodicity of table";
+  parameter Modelica.Units.SI.Time period "Periodicity of table";
 
   Interfaces.IntegerOutput y[nout] "Output of the table"
     annotation (Placement(transformation(extent={{100,-20},{140,20}})));
@@ -18,21 +17,21 @@ protected
     "Dimension of output vector";
   final parameter Integer nT=size(table, 1)
     "Number of time stamps";
-  parameter Modelica.SIunits.Time t0(fixed=false)
-    "First sample time instant";
+  parameter Modelica.Units.SI.Time t0(fixed=false) "First sample time instant";
 
-  final parameter Modelica.SIunits.Time timeStamps[:] = timeScale*table[1:end, 1] "Time stamps";
+  final parameter Modelica.Units.SI.Time timeStamps[:]=timeScale*table[1:end, 1]
+    "Time stamps";
   final parameter Integer val[:,:] = integer(table[1:end, 2:end] + ones(nT, nout) * Constants.small) "Table values as Integer";
 
   Integer idx(fixed=false) "Index for table lookup";
 
   function getIndex "Function to get the index for the table look-up"
-    input Modelica.SIunits.Time t "Current time";
-    input Modelica.SIunits.Time period "Time period";
-    input Modelica.SIunits.Time x[:] "Time stamps";
+    input Modelica.Units.SI.Time t "Current time";
+    input Modelica.Units.SI.Time period "Time period";
+    input Modelica.Units.SI.Time x[:] "Time stamps";
     output Integer k "Index in table";
   protected
-    Modelica.SIunits.Time tS "Time shifted so it is within the period";
+    Modelica.Units.SI.Time tS "Time shifted so it is within the period";
   algorithm
     tS := mod(t, period);
     k := -1;

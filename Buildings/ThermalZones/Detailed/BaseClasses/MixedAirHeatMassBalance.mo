@@ -7,17 +7,15 @@ model MixedAirHeatMassBalance
   constant Boolean homotopyInitialization = true "= true, use homotopy method"
     annotation(HideResult=true);
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal(min=0)
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal(min=0)
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
 
   parameter Buildings.HeatTransfer.Types.InteriorConvection conMod
     "Convective heat transfer model for opaque constructions"
     annotation (Dialog(group="Convective heat transfer"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hFixed
-    "Constant convection coefficient for opaque constructions"
-    annotation (Dialog(group="Convective heat transfer",
-                       enable=(conMod == Buildings.HeatTransfer.Types.InteriorConvection.Fixed)));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hFixed
+    "Constant convection coefficient for opaque constructions" annotation (
+      Dialog(group="Convective heat transfer", enable=(conMod == Buildings.HeatTransfer.Types.InteriorConvection.Fixed)));
 
   parameter Boolean use_C_flow
     "Set to true to enable input connector for trace substance"
@@ -115,8 +113,9 @@ model MixedAirHeatMassBalance
 
   // Latent and convective sensible heat gains
 protected
-  constant Modelica.SIunits.SpecificEnergy h_fg=
-    Buildings.Media.Air.enthalpyOfCondensingGas(273.15+37) "Latent heat of water vapor";
+  constant Modelica.Units.SI.SpecificEnergy h_fg=
+      Buildings.Media.Air.enthalpyOfCondensingGas(273.15 + 37)
+    "Latent heat of water vapor";
 
   Modelica.Blocks.Math.Gain mWat_flow(
     final k(unit="kg/J")=1/h_fg,

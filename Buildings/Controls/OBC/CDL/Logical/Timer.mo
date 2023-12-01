@@ -20,7 +20,7 @@ block Timer
         iconTransformation(extent={{100,-100},{140,-60}})));
 
 protected
-  discrete Modelica.SIunits.Time entryTime "Time instant when u became true";
+  discrete Modelica.Units.SI.Time entryTime "Time instant when u became true";
 
 initial equation
   pre(entryTime) = time;

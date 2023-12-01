@@ -20,11 +20,10 @@ protected
   final parameter Integer nout=size(table, 2)-1
     "Dimension of output vector";
 
-  parameter Modelica.SIunits.Time t0(fixed=false)
-    "First sample time instant";
+  parameter Modelica.Units.SI.Time t0(fixed=false) "First sample time instant";
 
-  parameter Modelica.SIunits.Time timeRange = timeScale * (table[end,1] - table[1,1])
-    "Range of time in table";
+  parameter Modelica.Units.SI.Time timeRange=timeScale*(table[end, 1] - table[1,
+      1]) "Range of time in table";
 
   final parameter Integer nT=size(table, 1)
     "Number of time stamps";

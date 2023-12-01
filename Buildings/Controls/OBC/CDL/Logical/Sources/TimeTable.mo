@@ -8,8 +8,7 @@ block TimeTable
     final unit="1")=1
     "Time scale of first table column. Set to 3600 if time in table is in hours";
 
-  parameter Modelica.SIunits.Time period
-    "Periodicity of table";
+  parameter Modelica.Units.SI.Time period "Periodicity of table";
 
   Interfaces.BooleanOutput y[nout] "Output of the table"
     annotation (Placement(transformation(extent={{120,-20},{160,20}}),
