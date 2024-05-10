@@ -144,8 +144,8 @@ equation
   connect(DOAScon.TAirSup, DOAScon.TAirDisCoiCoo) annotation (Line(points={{-54.6,
           -15.2},{-72,-15.2},{-72,-22.6},{-54.6,-22.6}}, color={0,0,127}));
   connect(chiBeaTesBed.rAT, DOAScon.TAirRet) annotation (Line(points={{12,-34.4},
-          {28,-34.4},{28,-34},{46,-34},{46,-68},{-72,-68},{-72,-46},{-80,-46},{
-          -80,-17.6},{-54.6,-17.6}}, color={0,0,127}));
+          {36,-34.4},{36,-34},{46,-34},{46,-94},{-106,-94},{-106,-17.6},{-54.6,
+          -17.6}},                   color={0,0,127}));
   connect(DOAScon.TAirOut, chiBeaTesBed.OutdoorAirTemp) annotation (Line(points=
          {{-54.6,-20.2},{-92,-20.2},{-92,-56},{-52,-56},{-52,-72},{-12,-72},{-12,
           -48},{18,-48},{18,-37.6},{12,-37.6}}, color={0,0,127}));
