@@ -73,8 +73,7 @@ block ClosedLoopValidation
   Modelica.Blocks.Sources.CombiTimeTable loads(
     tableOnFile=true,
     tableName="tab1",
-    fileName=
-        "C:/buildings_library/buildings_library_pnnl/VM_script/inputTable_constantSetpoint.txt",
+    fileName="./VM_script/inputTable_constantSetpoint.txt",
     columns={2,3,4,5,6},
     timeScale=60) "Table defining thermal loads for zone"
     annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
@@ -135,8 +134,8 @@ equation
   connect(testBed.yFanSta, DOAScon.supFanStatus) annotation (Line(points={{129.478,
           -7.85714},{134,-7.85714},{134,38},{-12,38},{-12,12.4941},{-6,12.4941}},
                                                                  color={255,0,255}));
-  connect(testBed.relHumDOASRet, DOAScon.retHum) annotation (Line(points={{129.478,
-          -17.1429},{134,-17.1429},{134,-36},{-16,-36},{-16,7.41176},{-6,
+  connect(testBed.relHumDOASRet, DOAScon.retHum) annotation (Line(points={{129.626,
+          -16.8571},{134,-16.8571},{134,-36},{-16,-36},{-16,7.41176},{-6,
           7.41176}},                                                color={0,0,127}));
   connect(enaSch.y[1], hys.u)
     annotation (Line(points={{-128,80},{-122,80}}, color={0,0,127}));
@@ -152,8 +151,8 @@ equation
           {40,-20},{40,-17.1429},{58.5217,-17.1429}}, color={0,0,127}));
   connect(testBed.TZon, terCon.TZon) annotation (Line(points={{129.478,14.2857},
           {132,14.2857},{132,72},{4,72},{4,50},{8,50}}, color={0,0,127}));
-  connect(testBed.VDisAir_flow, terCon.VDis_flow) annotation (Line(points={{129.478,
-          11.4286},{136,11.4286},{136,76},{2,76},{2,46},{8,46}},         color=
+  connect(testBed.VDisAir_flow, terCon.VDis_flow) annotation (Line(points={{129.183,
+          10.5714},{136,10.5714},{136,76},{2,76},{2,46},{8,46}},         color=
           {0,0,127}));
   connect(testBed.TZon, TZonMax.u[1:5]) annotation (Line(points={{129.478,
           14.2857},{132,14.2857},{132,72},{-44,72},{-44,58.4},{-42,58.4}},

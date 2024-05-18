@@ -404,7 +404,8 @@ block TestBed_v2
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yBypValPos
     "Measured bypass valve position"
-    annotation (Placement(transformation(extent={{580,100},{620,140}})));
+    annotation (Placement(transformation(extent={{584,102},{624,142}}),
+        iconTransformation(extent={{584,102},{624,142}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uFanSta
     "Supply fan enable signal"
@@ -444,11 +445,11 @@ block TestBed_v2
         MediumA, m_flow_nominal=mAirTot_flow_nominal)
     "Relative humidity sensor"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation=180,
-        origin={-90,160})));
+        origin={-94,168})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput relHumDOASRet
     "Measured DOAS return air relative humidity"
-    annotation (Placement(transformation(extent={{580,-200},{620,-160}})));
+    annotation (Placement(transformation(extent={{582,-196},{622,-156}})));
   ZoneModel_simplified_v2 nor(
     nConExt=0,
     nConExtWin=0,
@@ -569,7 +570,8 @@ block TestBed_v2
         iconTransformation(extent={{580,280},{620,320}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput VDisAir_flow[5]
     "Measured zone discharge air volume flow rate"
-    annotation (Placement(transformation(extent={{580,200},{620,240}})));
+    annotation (Placement(transformation(extent={{576,188},{616,228}}),
+        iconTransformation(extent={{576,188},{616,228}})));
   Modelica.Blocks.Routing.Multiplex5 multiplex5_1
     annotation (Placement(transformation(extent={{300,250},{320,270}})));
   Modelica.Blocks.Routing.Multiplex5 multiplex5_2
@@ -781,6 +783,16 @@ block TestBed_v2
     d=784,
     nStaRef=2) "Gypsum board"
     annotation (Placement(transformation(extent={{490,280},{510,300}})));
+  CDL.Interfaces.RealOutput                        outdoorairtemp
+    "Measured DOAS return air relative humidity"
+    annotation (Placement(transformation(extent={{596,-232},{636,-192}}),
+        iconTransformation(extent={{596,-232},{636,-192}})));
+  Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium = MediumA,
+      m_flow_nominal=mAirTot_flow_nominal)
+    annotation (Placement(transformation(extent={{-170,186},{-192,160}})));
+  CDL.Interfaces.RealOutput returnairtemp "Measured bypass valve position"
+    annotation (Placement(transformation(extent={{582,152},{622,192}}),
+        iconTransformation(extent={{584,102},{624,142}})));
 equation
 
   connect(jun.port_1,pum. port_b) annotation (Line(points={{100,-50},{100,-120}},
@@ -917,12 +929,8 @@ equation
   connect(demux.y[1], val.y) annotation (Line(points={{60,-14.4},{130,-14.4},{130,
           -28}},                          color={0,0,127}));
 
-  connect(senRelHum.port_a, jun5.port_1)
-    annotation (Line(points={{-80,160},{-40,160}}, color={0,127,255}));
-  connect(senRelHum.port_b, amb.ports[3]) annotation (Line(points={{-100,160},{
-          -220,160},{-220,-11.9333},{-228,-11.9333}}, color={0,127,255}));
-  connect(senRelHum.phi, relHumDOASRet) annotation (Line(points={{-90.1,149},{-90.1,
-          -190},{560,-190},{560,-180},{600,-180}},       color={0,0,127}));
+  connect(senRelHum.phi, relHumDOASRet) annotation (Line(points={{-94.1,157},{
+          -94.1,-190},{560,-190},{560,-176},{602,-176}}, color={0,0,127}));
   connect(wes.port_a, sou.port_a) annotation (Line(points={{130,260},{130,270},{
           170,270},{170,230},{190,230},{190,200}}, color={191,0,0}));
   connect(wes.port_a, nor.port_a) annotation (Line(points={{130,260},{130,270},{
@@ -992,7 +1000,8 @@ equation
           {280,250},{280,272},{214,272}}, color={0,0,127}));
 
   connect(multiplex5_3.y, VDisAir_flow)
-    annotation (Line(points={{321,220},{600,220}}, color={0,0,127}));
+    annotation (Line(points={{321,220},{458,220},{458,208},{596,208}},
+                                                   color={0,0,127}));
   connect(multiplex5_2.y, yRelHumZon)
     annotation (Line(points={{321,300},{600,300}}, color={0,0,127}));
 
@@ -1182,8 +1191,9 @@ equation
   connect(corCAVTer.port_b, cor.portAir_a) annotation (Line(points={{400,150},{440,
           150},{440,180},{220,180},{220,224},{206,224},{206,246},{200,246}},
         color={0,127,255}));
-  connect(val2.y_actual, yBypValPos) annotation (Line(points={{175,147},{380,147},
-          {380,170},{520,170},{520,120},{600,120}}, color={0,0,127}));
+  connect(val2.y_actual, yBypValPos) annotation (Line(points={{175,147},{380,
+          147},{380,170},{520,170},{520,122},{604,122}},
+                                                    color={0,0,127}));
   connect(senRelPre1.p_rel, dPDOASAir) annotation (Line(points={{-41,30},{4,30},
           {4,-158},{540,-158},{540,-20},{600,-20}}, color={0,0,127}));
   connect(hys.y, yPumSta) annotation (Line(points={{162,-110},{196,-110},{196,-204},
@@ -1216,6 +1226,22 @@ equation
           {-322,70}}, color={255,0,255}));
   connect(pre.y, yFanSta) annotation (Line(points={{-298,70},{-36,70},{-36,-174},
           {50,-174},{50,-208},{554,-208},{554,-50},{600,-50}}, color={255,0,255}));
+  connect(weaBus.TDryBul, outdoorairtemp) annotation (Line(
+      points={{-270,-10},{156,-10},{156,-212},{616,-212}},
+      color={255,204,51},
+      thickness=0.5), Text(
+      string="%first",
+      index=-1,
+      extent={{-6,3},{-6,3}},
+      horizontalAlignment=TextAlignment.Right));
+  connect(jun5.port_1, senRelHum.port_a) annotation (Line(points={{-40,160},{
+          -62,160},{-62,168},{-84,168}}, color={0,127,255}));
+  connect(senRelHum.port_b, senTem1.port_a) annotation (Line(points={{-104,168},
+          {-138,168},{-138,173},{-170,173}}, color={0,127,255}));
+  connect(senTem1.port_b, amb.ports[3]) annotation (Line(points={{-192,173},{
+          -220,173},{-220,-11.9333},{-228,-11.9333}}, color={0,127,255}));
+  connect(senTem1.T, returnairtemp) annotation (Line(points={{-181,158.7},{-132,
+          158.7},{-132,194},{554,194},{554,172},{602,172}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-340,-220},
             {580,340}})),                                        Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-340,-220},{580,340}})));
