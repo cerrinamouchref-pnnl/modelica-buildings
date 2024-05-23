@@ -793,6 +793,11 @@ block TestBed_v2
   CDL.Interfaces.RealOutput returnairtemp "Measured bypass valve position"
     annotation (Placement(transformation(extent={{582,152},{622,192}}),
         iconTransformation(extent={{584,102},{624,142}})));
+  Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = MediumA)
+    annotation (Placement(transformation(extent={{-200,20},{-180,40}})));
+  CDL.Interfaces.RealOutput massflowrate
+    "Measured chilled water valve position"
+    annotation (Placement(transformation(extent={{580,28},{620,68}})));
 equation
 
   connect(jun.port_1,pum. port_b) annotation (Line(points={{100,-50},{100,-120}},
@@ -844,10 +849,6 @@ equation
       color={28,108,200},
       thickness=0.5));
 
-  connect(amb.ports[1], heaCoi.port_a2) annotation (Line(points={{-228,-6.06667},
-          {-206,-6.06667},{-206,0},{-200,0}},
-                                 color={0,127,255}));
-
   connect(souCoo1.ports[1], pum.port_a)
     annotation (Line(points={{100,-164},{100,-140}}, color={0,127,255}));
 
@@ -870,8 +871,8 @@ equation
   connect(fan.port_b, senRelPre1.port_a)
     annotation (Line(points={{-60,0},{-50,0},{-50,20}}, color={0,127,255}));
 
-  connect(senRelPre1.port_b, amb.ports[2]) annotation (Line(points={{-50,40},{
-          -50,60},{-212,60},{-212,-2},{-216,-2},{-216,-9},{-228,-9}},
+  connect(senRelPre1.port_b, amb.ports[1]) annotation (Line(points={{-50,40},{
+          -50,60},{-212,60},{-212,-2},{-216,-2},{-216,-6.06667},{-228,-6.06667}},
         color={0,127,255}));
 
   connect(pum.y_actual, hys.u) annotation (Line(points={{93,-119},{93,-110},{138,
@@ -1238,10 +1239,16 @@ equation
           -62,160},{-62,168},{-84,168}}, color={0,127,255}));
   connect(senRelHum.port_b, senTem1.port_a) annotation (Line(points={{-104,168},
           {-138,168},{-138,173},{-170,173}}, color={0,127,255}));
-  connect(senTem1.port_b, amb.ports[3]) annotation (Line(points={{-192,173},{
-          -220,173},{-220,-11.9333},{-228,-11.9333}}, color={0,127,255}));
+  connect(senTem1.port_b, amb.ports[2]) annotation (Line(points={{-192,173},{
+          -220,173},{-220,-9},{-228,-9}},             color={0,127,255}));
   connect(senTem1.T, returnairtemp) annotation (Line(points={{-181,158.7},{-132,
           158.7},{-132,194},{554,194},{554,172},{602,172}}, color={0,0,127}));
+  connect(amb.ports[3], senMasFlo.port_a) annotation (Line(points={{-228,
+          -11.9333},{-214,-11.9333},{-214,30},{-200,30}}, color={0,127,255}));
+  connect(senMasFlo.port_b, heaCoi.port_a2) annotation (Line(points={{-180,30},
+          {-192,30},{-192,8},{-200,8},{-200,0}}, color={0,127,255}));
+  connect(senMasFlo.m_flow, massflowrate) annotation (Line(points={{-190,41},{
+          198,41},{198,48},{600,48}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-340,-220},
             {580,340}})),                                        Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-340,-220},{580,340}})));
