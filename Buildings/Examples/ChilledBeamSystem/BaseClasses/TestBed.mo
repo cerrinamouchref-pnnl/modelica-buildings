@@ -162,8 +162,7 @@ block TestBed "Testbed consisting of a 5-zone building model paired with DOAS an
     Placement(transformation(extent = {{120, -50}, {140, -30}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(final filNam=
         ModelicaServices.ExternalReferences.loadResource(
-        "./Buildings/Resources/weatherdata/USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3.mos"))
-                                                                                                                                                                                                            "Weather data" annotation (
+        "./Buildings/Resources/weatherdata/USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3.mos"))                                                                                                             "Weather data" annotation (
     Placement(visible = true, transformation(origin = {-14, -14}, extent = {{-310, -20}, {-290, 0}}, rotation = 0)));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus" annotation (
     Placement(visible = true, transformation(origin = {-16, -6}, extent = {{-280, -20}, {-260, 0}}, rotation = 0), iconTransformation(origin = {0, 0}, extent = {{0, 0}, {0, 0}}, rotation = 0)));
