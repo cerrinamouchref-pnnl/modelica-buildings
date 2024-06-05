@@ -184,8 +184,6 @@ equation
   connect(terCon.yDam, chiBeaTesBed.uCAVDam) annotation (Line(points={{64,64},{
           72,64},{72,62},{78,62},{78,36},{-20,36},{-20,-6},{-12,-6}}, color={0,
           0,127}));
-  connect(loads.y, chiBeaTesBed.QFlo) annotation (Line(points={{-139,-50},{-14,-50},
-          {-14,6},{-12,6}},      color={0,0,127}));
   connect(sub.y, chiBeaTesBed.deltaT) annotation (Line(points={{18,-82},{20,-82},
           {20,-98},{-136,-98},{-136,-38},{-104,-38},{-104,6},{-68,6},{-68,10},{
           -24,10},{-24,-2},{-18,-2},{-18,-4},{-12,-4}}, color={0,0,127}));
@@ -199,6 +197,8 @@ equation
   connect(chiBeaTesBed.rAT, eRWtemp.TAirRet) annotation (Line(points={{12,-34.4},
           {60,-34.4},{60,-92},{-108,-92},{-108,-80},{-94.4,-80}}, color={0,0,
           127}));
+  connect(loads.y, chiBeaTesBed.QFlo) annotation (Line(points={{-139,-50},{-76,
+          -50},{-76,-48},{-14,-48},{-14,6},{-12,6}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}})),
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-160, -100}, {160, 100}})),
