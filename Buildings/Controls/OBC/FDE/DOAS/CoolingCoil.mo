@@ -36,26 +36,6 @@ block CoolingCoil "This block commands the cooling coil."
   final unit="s")=0.1
     "Time constant of derivative block for conPIDRegOpe controller";
 
-  parameter Real dehumSet(
-    final min=0,
-    final max=100)=60
-    "Dehumidification set point.";
-
-  parameter Real timThrDehDis(
-    final unit="s",
-    final quantity="Time")=600
-    "Continuous time period for which measured relative humidity needs to fall below relative humidity threshold before dehumidification mode is disabled";
-
-  parameter Real timDelDehEna(
-    final unit="s",
-    final quantity="Time")=120
-    "Continuous time period for which supply fan needs to be on before enabling dehumidifaction mode";
-
-  parameter Real timThrDehEna(
-    final unit="s",
-    final quantity="Time")=5
-    "Continuous time period for which relative humidity rises above set point before dehumidifcation mode is enabled";
-
 
 
   // ---inputs---

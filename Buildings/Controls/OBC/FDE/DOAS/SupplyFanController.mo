@@ -46,14 +46,14 @@ block SupplyFanController "This block manages start, stop, status, and speed of 
   "Minimum Fan Speed";
 
   parameter Real kFanSpe(
-   final unit= "1") = 0.5 "
+   final unit= "1") = 0.005 "
   Fan speed set point SAT PI gain value k.";
 
   parameter Real TdFanSpe(
-   final unit= "s") = 60 "Time constant of derivative block for conPIDFanSpe";
+   final unit= "s") = 0 "Time constant of derivative block for conPIDFanSpe";
 
   parameter Real TiFanSpe(
-   final unit= "s") = 0.000025
+   final unit= "s") = 10
   "Fan speed set point SAT PI time constant value Ti.";
 
   parameter CDL.Types.SimpleController controllerTypeFanSpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
