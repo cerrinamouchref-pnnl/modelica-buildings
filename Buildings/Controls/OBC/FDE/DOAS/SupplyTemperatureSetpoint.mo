@@ -4,37 +4,41 @@ block SupplyTemperatureSetpoint
 
   parameter Real TSupLowSet(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=273.15+20
    "Minimum primary supply air temperature reset value";
+   //final displayUnit="degC",
 
   parameter Real TSupHigSet(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=273.15+24
    "Maximum primary supply air temperature reset value";
+   //final displayUnit="degC",
 
   parameter Real THigZon(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=273.15+25
    "Maximum zone temperature reset value";
+   //final displayUnit="degC",
 
   parameter Real TLowZon(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=273.15+21
    "Minimum zone temperature reset value";
+   //final displayUnit="degC",
 
   parameter Real TSupCooOff(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=2
    "Supply air temperature cooling set point offset.";
 
   parameter Real TSupHeaOff(
    final unit="K",
-   final displayUnit="degC",
+   final displayUnit="K",
    final quantity="ThermodynamicTemperature")=2
    "Supply air temperature heating set point offset.";
 

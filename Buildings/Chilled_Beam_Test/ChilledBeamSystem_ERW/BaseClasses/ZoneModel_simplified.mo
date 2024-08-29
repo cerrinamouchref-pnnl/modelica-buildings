@@ -42,6 +42,7 @@ block ZoneModel_simplified
   Buildings.Fluid.MixingVolumes.MixingVolume vol(
     redeclare package Medium = MediumA,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+    X_start={0.006,1},
     m_flow_nominal=mAChiBea_flow_nominal + mA_flow_nominal,
     V=1.2*V,
     nPorts=6) "Zone air volume"
@@ -89,11 +90,11 @@ block ZoneModel_simplified
     "Nominal mass flow rate"
     annotation(dialog(group="Zone parameters"));
 
-  Modelica.Fluid.Interfaces.FluidPort_a portChiWat_a(redeclare package Medium
-      = MediumW) "CHW inlet port" annotation (Placement(transformation(extent={{
+  Modelica.Fluid.Interfaces.FluidPort_a portChiWat_a(redeclare package Medium =
+        MediumW) "CHW inlet port" annotation (Placement(transformation(extent={{
             -50,-210},{-30,-190}}), iconTransformation(extent={{-50,-110},{-30,-90}})));
-  Modelica.Fluid.Interfaces.FluidPort_b portChiWat_b(redeclare package Medium
-      = MediumW) "CHW outlet port" annotation (Placement(transformation(extent={
+  Modelica.Fluid.Interfaces.FluidPort_b portChiWat_b(redeclare package Medium =
+        MediumW) "CHW outlet port" annotation (Placement(transformation(extent={
             {30,-210},{50,-190}}), iconTransformation(extent={{30,-110},{50,-90}})));
   Modelica.Fluid.Interfaces.FluidPort_a portAir_a(redeclare package Medium =
         MediumA) "Air inlet port" annotation (Placement(transformation(extent={{
@@ -144,7 +145,7 @@ block ZoneModel_simplified
     T_a_start=datConBou.T_a_start,
     T_b_start=datConBou.T_b_start,
     final stateAtSurface_a=datConBou.stateAtSurface_a,
-    final stateAtSurface_b=datConBou.stateAtSurface_b)   if haveConBou
+    final stateAtSurface_b=datConBou.stateAtSurface_b) if   haveConBou
     "Heat conduction through opaque constructions that have the boundary conditions of the other side exposed"
     annotation (Placement(transformation(extent={{-6,34},{-46,74}})));
   parameter ThermalZones.Detailed.BaseClasses.ParameterConstruction           datConBou[nConBou](

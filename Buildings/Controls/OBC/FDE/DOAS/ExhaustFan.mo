@@ -66,7 +66,8 @@ protected
     controllerType=controllerTypeExhFan,
     Ti=TiExhFan,
     k=kExhFan,
-    Td=TdExhFan)
+    Td=TdExhFan,
+    reverseActing=false)
                "Continuous PID for static pressure and setpoint" annotation (
       Placement(visible=true, transformation(
         origin={-2,4},

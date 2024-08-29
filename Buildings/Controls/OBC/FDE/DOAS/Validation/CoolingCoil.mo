@@ -64,11 +64,7 @@ model CoolingCoil "This model simulates CoolingCoil"
     controllerTypeRegOpe=controllerTypeRegOpe,
     kRegOpe=kRegOpe,
     TiRegOpe=TiRegOpe,
-    TdRegOpe=TdRegOpe,
-    dehumSet=dehumSet,
-    timThrDehDis=timThrDehDis,
-    timDelDehEna=timDelDehEna,
-    timThrDehEna=timThrDehEna)
+    TdRegOpe=TdRegOpe)
     annotation (Placement(transformation(extent={{48,-24},{68,-4}})));
 
   Buildings.Controls.OBC.CDL.Logical.Sources.Pulse SFproof(

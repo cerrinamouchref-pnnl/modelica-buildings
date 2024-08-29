@@ -46,11 +46,12 @@ protected
     "Real constant 0"
     annotation (Placement(transformation(extent={{-20,-38},{0,-18}})));
 
-  Buildings.Controls.OBC.CDL.Reals.PID conPIDCoiHea(
+  CDL.Reals.PIDWithReset               conPIDCoiHea(
     controllerType=Buildings.Controls.OBC.CDL.Types.SimpleController.PID,
     Ti=TiCoiHea,
     k=kCoiHea,
-    Td=TdCoiHea)
+    Td=TdCoiHea,
+    reverseActing=true)
                "PID controller for regular heating coil operation"
                annotation (Placement(visible=true, transformation(
         origin={-30,24},
@@ -75,6 +76,8 @@ equation
           36},{-86,32},{-50,32},{-50,24},{-42,24}}, color={0,0,127}));
   connect(swiCoiHea.y, yCoiHea) annotation (Line(points={{58,-2},{90,-2},{90,0},
           {122,0}}, color={0,0,127}));
+  connect(uFanSupPro, conPIDCoiHea.trigger) annotation (Line(points={{-122,0},{
+          -80,0},{-80,2},{-36,2},{-36,12}}, color={255,0,255}));
   annotation (
     defaultComponentName = "Heating",
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(lineColor = {179, 151, 128}, fillColor = {255, 255, 255},

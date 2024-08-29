@@ -164,7 +164,7 @@ block TestBed "Testbed consisting of a 5-zone building model paired with DOAS an
     Placement(transformation(extent = {{120, -50}, {140, -30}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(final filNam=
         ModelicaServices.ExternalReferences.loadResource(
-        "modelica://Buildings/Resources/weatherdata/USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3.mos"))                                                                                                             "Weather data" annotation (
+        "./Buildings/Resources/weatherdata/USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3.mos"))                                                                                                             "Weather data" annotation (
     Placement(visible = true, transformation(origin={-40,-12},    extent = {{-310, -20}, {-290, 0}}, rotation = 0)));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather Data Bus" annotation (
     Placement(visible = true, transformation(origin = {-16, -6}, extent = {{-280, -20}, {-260, 0}}, rotation = 0), iconTransformation(origin = {0, 0}, extent = {{0, 0}, {0, 0}}, rotation = 0)));
@@ -216,7 +216,8 @@ block TestBed "Testbed consisting of a 5-zone building model paired with DOAS an
     Placement(transformation(extent = {{-320, -120}, {-300, -100}})));
   Buildings.Controls.OBC.CDL.Reals.Multiply pro "Find pump flow signal by multiplying enable signal with speed signal" annotation (
     Placement(transformation(extent = {{-280, -140}, {-260, -120}})));
-  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(final k = mHotWatCoi_nominal) "Multiply control signal by nominal flowrate" annotation (
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai(final k=10*
+        mHotWatCoi_nominal)                                                              "Multiply control signal by nominal flowrate" annotation (
     Placement(transformation(extent = {{-320, -60}, {-300, -40}})));
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gai1(final k = mChiWatCoi_nominal) "Multiply control signal by nominal flowrate" annotation (
     Placement(transformation(extent = {{-320, -90}, {-300, -70}})));
@@ -533,9 +534,9 @@ equation
   connect(heaCoi.port_b1, sinHea.ports[1]) annotation (
     Line(points = {{-174, -22}, {-212, -22}, {-212, -64}}, color = {28, 108, 200}, thickness = 0.5));
   connect(jun3.port_2, sinCoo1.ports[1]) annotation (
-    Line(points={{250,-50},{250,-166},{251,-166}},        color = {0, 127, 255}));
+    Line(points={{250,-50},{250,-166},{248,-166}},        color = {0, 127, 255}));
   connect(senRelPre.port_b, sinCoo1.ports[2]) annotation (
-    Line(points={{170,-70},{249,-70},{249,-166}},        color = {0, 127, 255}));
+    Line(points={{170,-70},{252,-70},{252,-166}},        color = {0, 127, 255}));
   connect(uPumSta, booToRea.u) annotation (
     Line(points = {{-360, -110}, {-322, -110}}, color = {255, 0, 255}));
   connect(booToRea.y, pro.u1) annotation (
@@ -561,9 +562,9 @@ equation
   connect(uFanSpe, pro1.u2) annotation (
     Line(points={{-360,38},{-330,38},{-330,24},{-300,24}},          color = {0, 0, 127}));
   connect(val.y_actual, mux1.u[1]) annotation (
-    Line(points={{135,-33},{154,-33},{154,77.2},{160,77.2}},          color = {0, 0, 127}));
+    Line(points={{135,-33},{154,-33},{154,85.6},{160,85.6}},          color = {0, 0, 127}));
   connect(demux.y[1], val.y) annotation (
-    Line(points={{62,-22.8},{130,-22.8},{130,-28}},        color = {0, 0, 127}));
+    Line(points={{62,-14.4},{130,-14.4},{130,-28}},        color = {0, 0, 127}));
   connect(senRelHum.port_a, jun5.port_1) annotation (
     Line(points = {{-80, 160}, {-40, 160}}, color = {0, 127, 255}));
   connect(senRelHum.phi, relHumDOASRet) annotation (
@@ -713,23 +714,23 @@ equation
   connect(uChiWatVal, demux.u) annotation (
     Line(points={{-360,180},{-240,180},{-240,140},{0,140},{0,-20},{40,-20}},              color = {0, 0, 127}));
   connect(demux.y[2], val1.y) annotation (
-    Line(points={{62,-21.4},{80,-21.4},{80,18},{130,18},{130,12}},            color = {0, 0, 127}));
+    Line(points={{62,-17.2},{80,-17.2},{80,18},{130,18},{130,12}},            color = {0, 0, 127}));
   connect(demux.y[3], val3.y) annotation (
     Line(points={{62,-20},{80,-20},{80,60},{130,60},{130,52}},            color = {0, 0, 127}));
   connect(demux.y[4], val4.y) annotation (
-    Line(points={{62,-18.6},{80,-18.6},{80,100},{130,100},{130,92}},            color = {0, 0, 127}));
+    Line(points={{62,-22.8},{80,-22.8},{80,100},{130,100},{130,92}},            color = {0, 0, 127}));
   connect(demux.y[5], val5.y) annotation (
-    Line(points={{62,-17.2},{80,-17.2},{80,138},{130,138},{130,132}},            color = {0, 0, 127}));
+    Line(points={{62,-25.6},{80,-25.6},{80,138},{130,138},{130,132}},            color = {0, 0, 127}));
   connect(uBypValPos, val2.y) annotation (
     Line(points = {{-360, 220}, {100, 220}, {100, 158}, {170, 158}, {170, 152}}, color = {0, 0, 127}));
   connect(val1.y_actual, mux1.u[2]) annotation (
-    Line(points={{135,7},{154,7},{154,78.6},{160,78.6}},          color = {0, 0, 127}));
+    Line(points={{135,7},{154,7},{154,82.8},{160,82.8}},          color = {0, 0, 127}));
   connect(val3.y_actual, mux1.u[3]) annotation (
     Line(points = {{135, 47}, {154, 47}, {154, 80}, {160, 80}}, color = {0, 0, 127}));
   connect(val4.y_actual, mux1.u[4]) annotation (
-    Line(points={{135,87},{154,87},{154,81.4},{160,81.4}},          color = {0, 0, 127}));
+    Line(points={{135,87},{154,87},{154,77.2},{160,77.2}},          color = {0, 0, 127}));
   connect(val5.y_actual, mux1.u[5]) annotation (
-    Line(points={{135,127},{154,127},{154,82.8},{160,82.8}},          color = {0, 0, 127}));
+    Line(points={{135,127},{154,127},{154,74.4},{160,74.4}},          color = {0, 0, 127}));
   connect(mux1.y, yChiWatVal) annotation (
     Line(points = {{181, 80}, {200, 80}, {200, -200}, {520, -200}, {520, 80}, {600, 80}}, color = {0, 0, 127}));
   connect(jun4.port_3, souCAVTer.port_aAir) annotation (
@@ -751,35 +752,35 @@ equation
   connect(jun17.port_2, corCAVTer.port_aAir) annotation (
     Line(points = {{350, 60}, {350, 108}, {410, 108}}, color = {0, 127, 255}));
   connect(demux1.y[1], souCAVTer.yVAV) annotation (
-    Line(points={{320,-252.8},{374,-252.8},{374,-94},{386,-94}},          color = {0, 0, 127}));
+    Line(points={{320,-244.4},{374,-244.4},{374,-94},{386,-94}},          color = {0, 0, 127}));
   connect(demux1.y[2], easCAVTer.yVAV) annotation (
-    Line(points={{320,-251.4},{374,-251.4},{374,-34},{386,-34}},          color = {0, 0, 127}));
+    Line(points={{320,-247.2},{374,-247.2},{374,-34},{386,-34}},          color = {0, 0, 127}));
   connect(demux1.y[3], norCAVTer.yVAV) annotation (
     Line(points = {{320, -250}, {374, -250}, {374, 26}, {386, 26}}, color = {0, 0, 127}));
   connect(demux1.y[4], wesCAVTer.yVAV) annotation (
-    Line(points={{320,-248.6},{374,-248.6},{374,86},{386,86}},          color = {0, 0, 127}));
+    Line(points={{320,-252.8},{374,-252.8},{374,86},{386,86}},          color = {0, 0, 127}));
   connect(demux1.y[5], corCAVTer.yVAV) annotation (
-    Line(points={{320,-247.2},{374,-247.2},{374,144},{386,144}},          color = {0, 0, 127}));
+    Line(points={{320,-255.6},{374,-255.6},{374,144},{386,144}},          color = {0, 0, 127}));
   connect(demux2.y[1], souCAVTer.yHea) annotation (
-    Line(points={{320,-292.8},{368,-292.8},{368,-104},{386,-104}},          color = {0, 0, 127}));
+    Line(points={{320,-284.4},{368,-284.4},{368,-104},{386,-104}},          color = {0, 0, 127}));
   connect(demux2.y[2], easCAVTer.yHea) annotation (
-    Line(points={{320,-291.4},{368,-291.4},{368,-44},{386,-44}},          color = {0, 0, 127}));
+    Line(points={{320,-287.2},{368,-287.2},{368,-44},{386,-44}},          color = {0, 0, 127}));
   connect(demux2.y[3], norCAVTer.yHea) annotation (
     Line(points = {{320, -290}, {368, -290}, {368, 16}, {386, 16}}, color = {0, 0, 127}));
   connect(demux2.y[4], wesCAVTer.yHea) annotation (
-    Line(points={{320,-288.6},{368,-288.6},{368,76},{386,76}},          color = {0, 0, 127}));
+    Line(points={{320,-292.8},{368,-292.8},{368,76},{386,76}},          color = {0, 0, 127}));
   connect(demux2.y[5], corCAVTer.yHea) annotation (
-    Line(points={{320,-287.2},{368,-287.2},{368,134},{386,134}},          color = {0, 0, 127}));
+    Line(points={{320,-295.6},{368,-295.6},{368,134},{386,134}},          color = {0, 0, 127}));
   connect(souCAVTer.y_actual, mux3.u[1]) annotation (
-    Line(points={{432,-110},{450,-110},{450,-12.8},{490,-12.8}},        color = {0, 0, 127}));
+    Line(points={{432,-110},{450,-110},{450,-4.4},{490,-4.4}},          color = {0, 0, 127}));
   connect(easCAVTer.y_actual, mux3.u[2]) annotation (
-    Line(points={{432,-50},{450,-50},{450,-11.4},{490,-11.4}},        color = {0, 0, 127}));
+    Line(points={{432,-50},{450,-50},{450,-7.2},{490,-7.2}},          color = {0, 0, 127}));
   connect(norCAVTer.y_actual, mux3.u[3]) annotation (
     Line(points = {{432, 10}, {450, 10}, {450, -10}, {490, -10}}, color = {0, 0, 127}));
   connect(wesCAVTer.y_actual, mux3.u[4]) annotation (
-    Line(points={{432,70},{450,70},{450,-8.6},{490,-8.6}},            color = {0, 0, 127}));
+    Line(points={{432,70},{450,70},{450,-12.8},{490,-12.8}},          color = {0, 0, 127}));
   connect(corCAVTer.y_actual, mux3.u[5]) annotation (
-    Line(points={{432,128},{450,128},{450,-7.2},{490,-7.2}},            color = {0, 0, 127}));
+    Line(points={{432,128},{450,128},{450,-15.6},{490,-15.6}},          color = {0, 0, 127}));
   connect(mux3.y, yDamPos) annotation (
     Line(points = {{511, -10}, {560, -10}, {560, 56}, {602, 56}}, color = {0, 0, 127}));
   connect(uCAVDam, demux1.u) annotation (
@@ -807,15 +808,15 @@ equation
   connect(QFlo, demux3.u) annotation (
     Line(points = {{-360, 290}, {78, 290}}, color = {0, 0, 127}));
   connect(demux3.y[1], sou.QFlo) annotation (
-    Line(points={{100,287.2},{106,287.2},{106,194},{178,194}},          color = {0, 0, 127}));
+    Line(points={{100,295.6},{106,295.6},{106,194},{178,194}},          color = {0, 0, 127}));
   connect(demux3.y[2], eas.QFlo) annotation (
-    Line(points={{100,288.6},{180,288.6},{180,280},{234,280},{234,254},{238,254}},              color = {0, 0, 127}));
+    Line(points={{100,292.8},{180,292.8},{180,280},{234,280},{234,254},{238,254}},              color = {0, 0, 127}));
   connect(demux3.y[3], nor.QFlo) annotation (
     Line(points = {{100, 290}, {106, 290}, {106, 314}, {178, 314}}, color = {0, 0, 127}));
   connect(demux3.y[4], wes.QFlo) annotation (
-    Line(points={{100,291.4},{106,291.4},{106,254},{118,254}},          color = {0, 0, 127}));
+    Line(points={{100,287.2},{106,287.2},{106,254},{118,254}},          color = {0, 0, 127}));
   connect(demux3.y[5], cor.QFlo) annotation (
-    Line(points={{100,292.8},{106,292.8},{106,234},{176,234},{176,254},{178,254}},              color = {0, 0, 127}));
+    Line(points={{100,284.4},{106,284.4},{106,234},{176,234},{176,254},{178,254}},              color = {0, 0, 127}));
   connect(val.y_actual, sou.uVal) annotation (
     Line(points = {{135, -33}, {154, -33}, {154, 190}, {178, 190}}, color = {0, 0, 127}));
   connect(val1.y_actual, eas.uVal) annotation (
@@ -837,7 +838,7 @@ equation
   connect(mulMax.y, gaiM_flow.u) annotation (
     Line(points = {{122, -280}, {138, -280}}, color = {0, 0, 127}));
   connect(uCAVReh, mulMax.u[1:5]) annotation (
-    Line(points={{-360,100},{-4,100},{-4,-279.2},{98,-279.2}},          color = {0, 0, 127}));
+    Line(points={{-360,100},{-4,100},{-4,-281.6},{98,-281.6}},          color = {0, 0, 127}));
   connect(souTer.ports[1], jun18.port_1) annotation (
     Line(points = {{200, -280}, {260, -280}, {260, -230}, {320, -230}, {320, -90}}, color = {0, 127, 255}));
   connect(jun22.port_2, jun23.port_1) annotation (
@@ -863,7 +864,7 @@ equation
   connect(eas.portAir_b, relativePressure.port_a) annotation (
     Line(points = {{240, 246}, {240, 44}, {-130, 44}}, color = {0, 127, 255}));
   connect(amb.ports[1], senMasFlo.port_a) annotation (
-    Line(points={{-290,-32.8333},{-290,6},{-306,6}},     color = {0, 127, 255}));
+    Line(points={{-290,-27.3333},{-290,6},{-306,6}},     color = {0, 127, 255}));
   connect(jun21.port_2, corCAVTer.port_aHeaWat) annotation (
     Line(points = {{320, 80}, {320, 128}, {390, 128}}, color = {0, 127, 255}));
   connect(corCAVTer.port_bHeaWat, jun22.port_3) annotation (
@@ -920,14 +921,14 @@ equation
           {-100,54},{-100,50},{-82,50},{-82,-340},{530,-340},{530,-286},{
           604,-286}},
                   color={0,0,127}));
-  connect(senRelPre1.port_b, amb.ports[2]) annotation (Line(points={{-50,42},{24,
-          42},{24,88},{-102,88},{-102,38},{-170,38},{-170,-32.1},{-290,-32.1}},
+  connect(senRelPre1.port_b, amb.ports[2]) annotation (Line(points={{-50,42},{
+          24,42},{24,88},{-102,88},{-102,38},{-170,38},{-170,-28.8},{-290,-28.8}},
                          color={0,127,255}));
   connect(senRelHum1.phi, erwsuphum) annotation (Line(points={{-185.9,27},
           {-198,27},{-198,-254},{272,-254},{272,-194},{600,-194}},
                                                              color={0,0,127}));
   connect(relativePressure.port_b, amb.ports[3]) annotation (Line(points={{-130,64},
-          {-142,64},{-142,62},{-210,62},{-210,-31.3667},{-290,-31.3667}},
+          {-142,64},{-142,62},{-210,62},{-210,-30.2667},{-290,-30.2667}},
                                                                         color={
           0,127,255}));
   connect(truDel.y, exhFanSta) annotation (Line(points={{-276,84},{-122,84},{
@@ -940,7 +941,7 @@ equation
   connect(senTem1.port_a, whe.port_a2) annotation (Line(points={{-168,160},
           {-192,160},{-192,10},{-240,10}}, color={0,127,255}));
   connect(whe.port_b2, amb.ports[4]) annotation (Line(points={{-260,10},{-246,
-          10},{-246,0},{-264,0},{-264,-30.6333},{-290,-30.6333}},color={0,
+          10},{-246,0},{-264,0},{-264,-31.7333},{-290,-31.7333}},color={0,
           127,255}));
   connect(whe.port_b1, senTemEneWhe.port_a) annotation (Line(points={{
           -240,22},{-236,22},{-236,32},{-230,32}}, color={0,127,255}));
