@@ -31,6 +31,10 @@ model ClosedLoopValidation_test1
     TiRegOpe=10,
     TdRegOpe=0,
     dehumSet=0.6,
+    dehumOff=0.05,
+    timThrDehDis=1200,
+    timDelDehEna=180,
+    timThrDehEna=600,
     controllerTypeExhFan=Buildings.Controls.OBC.CDL.Types.SimpleController.P,
     kCoiHea=0.0005,
     TiCoiHea=15,
@@ -162,10 +166,10 @@ equation
   connect(chiBeaTesBed.exhFanSta, DOAScon.uFanExhPro) annotation (Line(points={{12,-14},
           {20,-14},{20,-16},{28,-16},{28,-54},{-22,-54},{-22,-44},{-62,-44},{
           -62,-32},{-56.6,-32}},       color={255,0,255}));
-  connect(TZonMax.u[1:5], chiBeaTesBed.TZon) annotation (Line(points={{-42,60.4},
-          {-44,60.4},{-44,46},{16,46},{16,4.8},{12,4.8}}, color={0,0,127}));
+  connect(TZonMax.u[1:5], chiBeaTesBed.TZon) annotation (Line(points={{-42,62.8},
+          {-44,62.8},{-44,46},{16,46},{16,4.8},{12,4.8}}, color={0,0,127}));
   connect(yDamPosMax.u[1:5], chiBeaTesBed.yDamPos) annotation (Line(points={{-60,
-          28.4},{-60,50},{-50,50},{-50,48},{26,48},{26,-7.8},{12,-7.8}},
+          30.8},{-60,50},{-50,50},{-50,48},{26,48},{26,-7.8},{12,-7.8}},
         color={0,0,127}));
   connect(chiBeaTesBed.yChiWatVal, terCon.uChiVal) annotation (Line(points={{12,
           -4},{22,-4},{22,0},{36,0},{36,48},{38,48},{38,55.25},{40,55.25}},
@@ -206,8 +210,7 @@ equation
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}})),
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-160, -100}, {160, 100}})),
     experiment(
-      StartTime=16848000,
-      StopTime=17020800,
+      StopTime=172800,
       Interval=600,
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"));

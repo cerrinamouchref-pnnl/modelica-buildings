@@ -90,11 +90,11 @@ block ZoneModel_simplified
     "Nominal mass flow rate"
     annotation(dialog(group="Zone parameters"));
 
-  Modelica.Fluid.Interfaces.FluidPort_a portChiWat_a(redeclare package Medium =
-        MediumW) "CHW inlet port" annotation (Placement(transformation(extent={{
+  Modelica.Fluid.Interfaces.FluidPort_a portChiWat_a(redeclare package Medium
+      = MediumW) "CHW inlet port" annotation (Placement(transformation(extent={{
             -50,-210},{-30,-190}}), iconTransformation(extent={{-50,-110},{-30,-90}})));
-  Modelica.Fluid.Interfaces.FluidPort_b portChiWat_b(redeclare package Medium =
-        MediumW) "CHW outlet port" annotation (Placement(transformation(extent={
+  Modelica.Fluid.Interfaces.FluidPort_b portChiWat_b(redeclare package Medium
+      = MediumW) "CHW outlet port" annotation (Placement(transformation(extent={
             {30,-210},{50,-190}}), iconTransformation(extent={{30,-110},{50,-90}})));
   Modelica.Fluid.Interfaces.FluidPort_a portAir_a(redeclare package Medium =
         MediumA) "Air inlet port" annotation (Placement(transformation(extent={{
@@ -157,8 +157,8 @@ block ZoneModel_simplified
 equation
   connect(zonTem.T, TZon)
     annotation (Line(points={{177,0},{220,0}}, color={0,0,127}));
-  connect(vol.ports[1], zonTem.port) annotation (Line(points={{12.6667,-16},{
-          12.6667,-20},{170,-20},{170,-10}},
+  connect(vol.ports[1], zonTem.port) annotation (Line(points={{14.3333,-16},{
+          14.3333,-20},{170,-20},{170,-10}},
                                 color={0,127,255}));
   connect(QFlo, preHea.Q_flow)
     annotation (Line(points={{-220,0},{-100,0}}, color={0,0,127}));
@@ -167,14 +167,14 @@ equation
   connect(preHea.port, vol.heatPort)
     annotation (Line(points={{-80,0},{0,0},{0,-6},{6,-6}}, color={191,0,0}));
   connect(portAir_b, vol.ports[2])
-    annotation (Line(points={{200,-50},{14,-50},{14,-16}}, color={0,127,255}));
+    annotation (Line(points={{200,-50},{15,-50},{15,-16}}, color={0,127,255}));
   connect(senRelHum.port, vol.ports[3])
-    annotation (Line(points={{90,80},{90,-16},{15.3333,-16}},
+    annotation (Line(points={{90,80},{90,-16},{15.6667,-16}},
                                                          color={0,127,255}));
   connect(portAir_a, senVolFlo.port_a)
     annotation (Line(points={{-200,-50},{-140,-50}}, color={0,127,255}));
   connect(senVolFlo.port_b, vol.ports[4]) annotation (Line(points={{-120,-50},{
-          16.6667,-50},{16.6667,-16}},
+          16.3333,-50},{16.3333,-16}},
                           color={0,127,255}));
   connect(senRelHum.phi, yRelHumZon) annotation (Line(points={{101,90},{220,90}},
                               color={0,0,127}));
@@ -193,13 +193,14 @@ equation
     annotation (Line(points={{-220,-80},{-182,-80}},   color={0,0,127}));
   connect(gai.y, fan.m_flow_in) annotation (Line(points={{-158,-80},{-10,-80},{
           -10,-88}},   color={0,0,127}));
-  connect(actBea.air_a, vol.ports[5]) annotation (Line(points={{14,-162},{60,-162},
-          {60,-40},{18,-40},{18,-16}},     color={0,127,255}));
+  connect(actBea.air_a, vol.ports[5]) annotation (Line(points={{14,-162},{60,
+          -162},{60,-40},{17,-40},{17,-16}},
+                                           color={0,127,255}));
   connect(fan.port_a, actBea.air_b) annotation (Line(points={{-20,-100},{-36,
           -100},{-36,-162},{-14,-162}},
                                   color={0,127,255}));
-  connect(fan.port_b, vol.ports[6]) annotation (Line(points={{0,-100},{19.3333,
-          -100},{19.3333,-16}},                     color={0,127,255}));
+  connect(fan.port_b, vol.ports[6]) annotation (Line(points={{0,-100},{17.6667,
+          -100},{17.6667,-16}},                     color={0,127,255}));
   connect(actBea.heaPor, vol.heatPort) annotation (Line(points={{0,-168},{0,-180},
           {80,-180},{80,-30},{0,-30},{0,-6},{6,-6}}, color={191,0,0}));
   connect(vol.heatPort, conBou[1].opa_a) annotation (Line(points={{6,-6},{-10,
@@ -219,8 +220,8 @@ equation
                           Diagram(coordinateSystem(preserveAspectRatio=false,
           extent={{-200,-200},{200,200}})),
     experiment(
-      StartTime=6393600,
-      StopTime=6566400,
+      StartTime=19200000,
+      StopTime=19800000,
       Interval=60,
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"));

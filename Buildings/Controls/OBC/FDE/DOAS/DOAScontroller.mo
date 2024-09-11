@@ -50,9 +50,16 @@ block DOAScontroller "DOAS controller built from DOAS blocks."
 
   parameter Real dehumSet(
     final min=0,
-    final max=100)=60
+    final max=100)=0.6
     "Dehumidification set point."
     annotation(Dialog(tab="Setpoints", group = "Dehumidification mode parameters"));
+
+
+  parameter Real dehumOff(
+    final min=0,
+    final max=100)=0.05
+   "Relative humidity offset"
+   annotation(Dialog(tab="Limits and Thresholds", group = "Dehumidification mode parameters"));
 
 
   parameter Real timThrDehDis(
@@ -78,7 +85,7 @@ block DOAScontroller "DOAS controller built from DOAS blocks."
   final displayUnit = "degC",
   final quantity = "ThermodynamicTemperature") = 2
   "Threshold temperature difference between return air and outdoor air temperature above which economizer mode is enabled"
-  annotation(Dialog(tab="Limits and Thresholds", group = "Dehumidification mode parameters"));
+  annotation(Dialog(tab="Limits and Thresholds", group = "Economizer mode parameters"));
 
     parameter Real dTThrEneRec(
   final unit = "K",
