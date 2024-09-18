@@ -49,41 +49,10 @@ block DehumMode
         transformation(extent={{102,-12},{142,28}}), iconTransformation(extent={
             {102,-20},{142,20}})));
 
-  CDL.Reals.AddParameter phiOffSet(p=-dehumOff)
-    "Calculate cooling setpoint temperature for air in dehumidification mode"
-    annotation (Placement(visible=true, transformation(
-        origin={-78,18},
-        extent={{-10,-10},{10,10}},
-        rotation=0)));
-  CDL.Reals.AddParameter phiOffSet1(p=dehumOff)
-    "Calculate cooling setpoint temperature for air in dehumidification mode"
-    annotation (Placement(visible=true, transformation(
-        origin={-74,-20},
-        extent={{-10,-10},{10,10}},
-        rotation=0)));
+  CDL.Reals.Hysteresis hys(uLow=0.55, uHigh=0.65)
+    annotation (Placement(transformation(extent={{-40,-24},{-20,-4}})));
+
 protected
-  Buildings.Controls.OBC.CDL.Logical.Latch lat
-    "Latches true when retHum > dehumSet; resets when 
-     retHum < dehumSet for dehumDelay time"
-    annotation (Placement(transformation(extent={{22,-10},{42,10}})));
-
-  Buildings.Controls.OBC.CDL.Reals.Greater gre
-    "True when return humidity is greater than set point"
-    annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
-
-  Buildings.Controls.OBC.CDL.Reals.Less les
-    "True when return humidity is less than set point"
-    annotation (Placement(transformation(extent={{-44,-42},{-24,-22}})));
-
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant phiAirDehSet(final k=
-        dehumSet) "Dehumidification set point"
-    annotation (Placement(transformation(extent={{-90,-72},{-70,-52}})));
-
-  Buildings.Controls.OBC.CDL.Logical.TrueDelay truDelDehDis(delayTime=
-        timThrDehDis)
-    "Minimum dehumidification time before disable when below set point."
-    annotation (Placement(transformation(extent={{-14,-42},{6,-22}})));
-
   Buildings.Controls.OBC.CDL.Logical.And andDehOpe "Logical AND; true when minimum fan runtime is met and 
       return humidity set point conditions are met."
     annotation (Placement(transformation(extent={{58,-2},{78,18}})));
@@ -96,26 +65,10 @@ protected
   Buildings.Controls.OBC.CDL.Logical.TrueDelay truDelDehEna(final delayTime=
         timThrDehEna,    final delayOnInit=true) "Delays the initial trigger for latch to correctly capture true state 
       when CDL starts with humidity above set point."
-    annotation (Placement(transformation(extent={{-14,-10},{6,10}})));
+    annotation (Placement(transformation(extent={{20,-14},{40,6}})));
 
 
 equation
-
-  connect(phiAirDehSet.y, les.u2)
-    annotation (Line(points={{-68,-62},{-54,-62},{-54,-40},{-46,-40}},
-                                                   color={0,0,127}));
-
-  connect(phiAirDehSet.y, gre.u2) annotation (Line(points={{-68,-62},{-54,-62},{
-          -54,-8},{-46,-8}}, color={0,0,127}));
-
-  connect(les.y,truDelDehDis. u)
-    annotation (Line(points={{-22,-32},{-16,-32}}, color={255,0,255}));
-
-  connect(truDelDehDis.y, lat.clr) annotation (Line(points={{8,-32},{14,-32},{14,
-          -6},{20,-6}}, color={255,0,255}));
-
-  connect(lat.y, andDehOpe.u2)
-    annotation (Line(points={{44,0},{56,0}}, color={255,0,255}));
 
   connect(yDehMod, yDehMod)
     annotation (Line(points={{122,8},{122,8}}, color={255,0,255}));
@@ -129,23 +82,16 @@ equation
   connect(minimumRunDeh.y, andDehOpe.u1) annotation (Line(points={{-22,38},{48,38},
           {48,8},{56,8}}, color={255,0,255}));
 
-  connect(gre.y,truDelDehEna. u)
-    annotation (Line(points={{-22,0},{-16,0}}, color={255,0,255}));
-
-  connect(truDelDehEna.y, lat.u)
-    annotation (Line(points={{8,0},{20,0}}, color={255,0,255}));
-
   connect(uFanSupPro, minimumRunDeh.u)
     annotation (Line(points={{-122,38},{-46,38}}, color={255,0,255}));
 
-  connect(phiAirRet, phiOffSet.u) annotation (Line(points={{-122,0},{-96,0},{-96,
-          10},{-98,10},{-98,18},{-90,18}}, color={0,0,127}));
-  connect(phiOffSet.y, gre.u1) annotation (Line(points={{-66,18},{-56,18},{-56,0},
-          {-46,0}}, color={0,0,127}));
-  connect(phiAirRet, phiOffSet1.u) annotation (Line(points={{-122,0},{-92,0},{-92,
-          -20},{-86,-20}}, color={0,0,127}));
-  connect(phiOffSet1.y, les.u1) annotation (Line(points={{-62,-20},{-56,-20},{-56,
-          -32},{-46,-32}}, color={0,0,127}));
+  connect(phiAirRet, hys.u) annotation (Line(points={{-122,0},{-50,0},{-50,-14},
+          {-42,-14}},color={0,0,127}));
+  connect(hys.y, truDelDehEna.u) annotation (Line(points={{-18,-14},{10,-14},{
+          10,-4},{18,-4}},
+                        color={255,0,255}));
+  connect(truDelDehEna.y, andDehOpe.u2) annotation (Line(points={{42,-4},{42,
+          -12},{56,-12},{56,0}}, color={255,0,255}));
   annotation (defaultComponentName="DehumMod",
   Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(extent={{-90,180},{90,76}}, lineColor={28,108,200}, textStyle={TextStyle.Bold}, textString="%name"),Rectangle(extent={{-100,100},{100,-100}}, lineColor={179,151,128}, radius=10, fillColor={255,255,255},
             fillPattern=

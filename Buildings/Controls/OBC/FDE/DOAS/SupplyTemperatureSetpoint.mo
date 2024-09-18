@@ -53,8 +53,8 @@ block SupplyTemperatureSetpoint
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Highest space temperature reported from all terminal units." annotation (
-      Placement(transformation(extent={{-142,-18},{-102,22}}),
-        iconTransformation(extent={{-140,-70},{-100,-30}})));
+      Placement(transformation(extent={{-140,-28},{-100,12}}),
+        iconTransformation(extent={{-140,-36},{-100,4}})));
 
 
   // ---outputs---
@@ -70,6 +70,11 @@ block SupplyTemperatureSetpoint
 
   CDL.Interfaces.RealOutput ySupSet
     annotation (Placement(transformation(extent={{100,-6},{140,34}})));
+  CDL.Interfaces.RealInput TZonHeaSet "Zone heating Setpoint"
+    annotation (Placement(transformation(extent={{-140,-60},{-100,-20}})));
+  CDL.Interfaces.RealInput TZonCooSet "Zone Cooling Setpoint" annotation (
+      Placement(transformation(extent={{-140,10},{-100,50}}),
+        iconTransformation(extent={{-140,10},{-100,50}})));
 protected
   Buildings.Controls.OBC.CDL.Reals.Line lin
     "Linear converter resets primary supply set point."
@@ -82,14 +87,6 @@ protected
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant TAirSupHigSet(final k=
         TSupHigSet)    "High primary supply temperature set point reset value."
     annotation (Placement(transformation(extent={{-90,10},{-70,30}})));
-
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TAirHigZon(final k=THigZon)
-                    "High zone temperature set point reset value."
-    annotation (Placement(transformation(extent={{-90,-28},{-70,-8}})));
-
-  Buildings.Controls.OBC.CDL.Reals.Sources.Constant TAirLowZon(final k=TLowZon)
-                     "Low zone temperature set point reset value."
-    annotation (Placement(transformation(extent={{-90,42},{-70,62}})));
 
   Buildings.Controls.OBC.CDL.Reals.Add addCooSet
     "Adds the cooling set point adjustment to the primary set point."
@@ -115,7 +112,8 @@ protected
 
 equation
   connect(lin.u, TAirHig)
-    annotation (Line(points={{-44,2},{-122,2}}, color={0,0,127}));
+    annotation (Line(points={{-44,2},{-94,2},{-94,-8},{-120,-8}},
+                                                color={0,0,127}));
 
   connect(TAirSupHeaSetOff.y, addHeaSet.u2) annotation (Line(points={{8,-56},{14,
           -56},{14,-46},{20,-46}}, color={0,0,127}));
@@ -146,12 +144,6 @@ equation
   connect(swiDeh.u2, uDehMod) annotation (Line(points={{64,-32},{54,-32},{54,-82},
           {-122,-82}}, color={255,0,255}));
 
-  connect(TAirHigZon.y, lin.x2) annotation (Line(points={{-68,-18},{-58,-18},{-58,
-          -2},{-44,-2}}, color={0,0,127}));
-
-  connect(TAirLowZon.y, lin.x1) annotation (Line(points={{-68,52},{-52,52},{-52,
-          10},{-44,10}}, color={0,0,127}));
-
   connect(TAirSupHigSet.y, lin.f1) annotation (Line(points={{-68,20},{-56,20},{
           -56,6},{-44,6}}, color={0,0,127}));
 
@@ -160,6 +152,10 @@ equation
 
   connect(lin.y, ySupSet) annotation (Line(points={{-20,2},{42,2},{42,14},{120,
           14}}, color={0,0,127}));
+  connect(TZonHeaSet, lin.x2) annotation (Line(points={{-120,-40},{-96,-40},{
+          -96,-12},{-64,-12},{-64,-2},{-44,-2}}, color={0,0,127}));
+  connect(TZonCooSet, lin.x1) annotation (Line(points={{-120,30},{-92,30},{-92,
+          48},{-50,48},{-50,10},{-44,10}}, color={0,0,127}));
   annotation (defaultComponentName="TSupSetpt",
     Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(extent={{-90,180},{90,76}},lineColor={28,108,200},textStyle={TextStyle.Bold},textString="%name"),Rectangle(extent={{
               -100,98},{100,-102}},                                                                                                                                                                            lineColor={179,151,128},radius=10,fillColor={255,255,255},

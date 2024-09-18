@@ -29,15 +29,16 @@ model ClosedLoopValidation_test1
     TdDeh=0,
     kRegOpe=0.00005,
     TiRegOpe=10,
-    TdRegOpe=0,
+    TdRegOpe=0.5,
     dehumSet=0.6,
     dehumOff=0.05,
     timThrDehDis=1200,
     timDelDehEna=180,
     timThrDehEna=600,
     controllerTypeExhFan=Buildings.Controls.OBC.CDL.Types.SimpleController.P,
-    kCoiHea=0.0005,
-    TiCoiHea=15,
+    kCoiHea=0.0000001,
+    TiCoiHea=0.001,
+    TdCoiHea=0.001,
     is_vav=true,
     kDam=0.5,
     TiDam=60,
@@ -166,10 +167,10 @@ equation
   connect(chiBeaTesBed.exhFanSta, DOAScon.uFanExhPro) annotation (Line(points={{12,-14},
           {20,-14},{20,-16},{28,-16},{28,-54},{-22,-54},{-22,-44},{-62,-44},{
           -62,-32},{-56.6,-32}},       color={255,0,255}));
-  connect(TZonMax.u[1:5], chiBeaTesBed.TZon) annotation (Line(points={{-42,62.8},
-          {-44,62.8},{-44,46},{16,46},{16,4.8},{12,4.8}}, color={0,0,127}));
+  connect(TZonMax.u[1:5], chiBeaTesBed.TZon) annotation (Line(points={{-42,60.4},
+          {-44,60.4},{-44,46},{16,46},{16,4.8},{12,4.8}}, color={0,0,127}));
   connect(yDamPosMax.u[1:5], chiBeaTesBed.yDamPos) annotation (Line(points={{-60,
-          30.8},{-60,50},{-50,50},{-50,48},{26,48},{26,-7.8},{12,-7.8}},
+          28.4},{-60,50},{-50,50},{-50,48},{26,48},{26,-7.8},{12,-7.8}},
         color={0,0,127}));
   connect(chiBeaTesBed.yChiWatVal, terCon.uChiVal) annotation (Line(points={{12,
           -4},{22,-4},{22,0},{36,0},{36,48},{38,48},{38,55.25},{40,55.25}},
@@ -206,11 +207,18 @@ equation
           -16},{-18,-16},{-18,-22},{-12,-22}},        color={0,0,127}));
   connect(DOAScon.yCoiCoo, chiBeaTesBed.uCooCoi) annotation (Line(points={{-25.14,
           -13},{-22,-13},{-22,-26},{-12,-26}},        color={0,0,127}));
+  connect(TSetRooHea.y[1], DOAScon.TZonHeaSet) annotation (Line(points={{-58,
+          114},{-56,114},{-56,60},{-64,60},{-64,1.6},{-56.6,1.6}}, color={0,0,
+          127}));
+  connect(TSetRooCoo.y[1], DOAScon.TZonCooSet) annotation (Line(points={{-56,
+          142},{-48,142},{-48,70},{-54,70},{-54,44},{-62,44},{-62,38},{-76,38},
+          {-76,10},{-66,10},{-66,-0.4},{-56.6,-0.4}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}})),
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-160, -100}, {160, 100}})),
     experiment(
-      StopTime=172800,
+      StartTime=19180800,
+      StopTime=19440000,
       Interval=600,
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"));

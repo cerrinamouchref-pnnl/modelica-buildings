@@ -520,6 +520,18 @@ block DOAScontroller "DOAS controller built from DOAS blocks."
     TSupCooOff=TSupCooOff,
     TSupHeaOff=TSupHeaOff)
     annotation (Placement(transformation(extent={{0,-8},{20,12}})));
+  CDL.Interfaces.RealInput TZonHeaSet(
+    final unit="K",
+    final displayUnit="degC",
+    final quantity="ThermodynamicTemperature") "Zone heating setpoint"
+    annotation (Placement(transformation(extent={{-140,78},{-100,118}}),
+        iconTransformation(extent={{-140,116},{-100,156}})));
+  CDL.Interfaces.RealInput TZonCooSet(
+    final unit="K",
+    final displayUnit="degC",
+    final quantity="ThermodynamicTemperature") "Zone cooling setpoint"
+    annotation (Placement(transformation(extent={{-140,110},{-100,150}}),
+        iconTransformation(extent={{-140,96},{-100,136}})));
 equation
   connect(SFcon.Occ,Occ)  annotation (
     Line(points={{-52,71},{-96,71},{-96,76},{-122,76}},          color = {255, 0, 255}));
@@ -595,7 +607,8 @@ equation
   connect(DehumMod.yDehMod, TSupSetpt.uDehMod) annotation (Line(points={{-25.8,
           18},{-24,18},{-24,7},{-2,7}}, color={255,0,255}));
   connect(TAirHig, TSupSetpt.TAirHig) annotation (Line(points={{-120,-30},{-6,
-          -30},{-6,-3},{-2,-3}}, color={0,0,127}));
+          -30},{-6,0.4},{-2,0.4}},
+                                 color={0,0,127}));
   connect(TSupSetpt.ySupHeaSet, Heating.TAirSupSetHea) annotation (Line(points=
           {{22,-1.8},{40,-1.8},{40,-3.2},{55.8,-3.2}}, color={0,0,127}));
   connect(TAirOut, EconMod1.TAirOut) annotation (Line(points={{-120,-138},{-78,
@@ -612,6 +625,10 @@ equation
           {{22,6.8},{32,6.8},{32,30.8},{55.8,30.8}}, color={0,0,127}));
   connect(TSupSetpt.ySupSet, ERWcon.TAirSupSetEneWhe) annotation (Line(points={
           {22,3.4},{18,3.4},{18,-61.8},{55.8,-61.8}}, color={0,0,127}));
+  connect(TZonHeaSet, TSupSetpt.TZonHeaSet) annotation (Line(points={{-120,98},
+          {-62,98},{-62,-2},{-2,-2}}, color={0,0,127}));
+  connect(TZonCooSet, TSupSetpt.TZonCooSet) annotation (Line(points={{-120,130},
+          {-62,130},{-62,5},{-2,5}}, color={0,0,127}));
   annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"),
     defaultComponentName = "DOAScon",
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -240}, {100, 100}}), graphics={  Text(textColor = {28, 108, 200}, extent = {{-90, 180}, {90, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Rectangle(lineColor = {179, 151, 128}, fillColor = {255, 255, 255},
