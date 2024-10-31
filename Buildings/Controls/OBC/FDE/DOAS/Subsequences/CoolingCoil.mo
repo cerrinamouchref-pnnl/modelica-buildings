@@ -1,38 +1,39 @@
 within Buildings.Controls.OBC.FDE.DOAS.Subsequences;
 block CoolingCoil "This block commands the cooling coil."
 
-  parameter Real erwDPadj(
+  parameter Real dTEneWheDewPoi(
   final unit = "K",
   final quantity = "TemperatureDifference") = 5
-  "Value subtracted from ERW supply air dewpoint.";
+  "Value subtracted from ERW supply air dewpoint.Value subtracted from ERW supply air dewpoint.";
 
-  parameter CDL.Types.SimpleController controllerTypeDeh=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+
+  parameter CDL.Types.SimpleController controllerTypeCoiCooDeh=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
     "PID controller for cooling air in dehumidification mode";
 
-  parameter Real kDeh(
+  parameter Real kCoiCooDeh(
   final unit="1") = 1
     "Gain of conPIDDeh controller";
 
-  parameter Real TiDeh(
+  parameter Real TiCoiCooDeh(
   final unit="s") = 60
     "Time constant of integrator block for conPIDDeh controller";
 
-  parameter Real TdDeh(
+  parameter Real TdCoiCooDeh(
   final unit="s") = 0.1
     "Time constant of derivative block for conPIDDeh controller";
 
-  parameter CDL.Types.SimpleController controllerTypeRegOpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  parameter CDL.Types.SimpleController controllerTypeCoiCooRegOpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
     "PID controller for regular cooling coil operation mode";
 
-  parameter Real kRegOpe(
+  parameter Real kCoiCooRegOpe(
   final unit="1") = 1
     "Gain of conPIDRegOpe controller";
 
-  parameter Real TiRegOpe(
+  parameter Real TiCoiCooRegOpe(
   final unit="s")=60
     "Time constant of integrator block for conPIDRegOpe controller";
 
-  parameter Real TdRegOpe(
+  parameter Real TdCoiCooRegOpe(
   final unit="s")=0.1
     "Time constant of derivative block for conPIDRegOpe controller";
 
@@ -42,21 +43,21 @@ block CoolingCoil "This block commands the cooling coil."
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uFanSupPro
     "Supply fan proven on signal" annotation (Placement(transformation(extent={{
-            -142,-116},{-102,-76}}), iconTransformation(extent={{-142,64},{-102,
-            104}})));
+            -142,-116},{-102,-76}}), iconTransformation(extent={{-140,60},{-100,
+            100}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uDeh
     "Dehumidification mode enable signal" annotation (Placement(transformation(
-          extent={{-142,-24},{-102,16}}), iconTransformation(extent={{-142,-26},
-            {-102,14}})));
+          extent={{-140,-20},{-100,20}}), iconTransformation(extent={{-140,-20},
+            {-100,20}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirSup(
     final unit="K",
     final displayUnit="degC",
     final quantity="ThermodynamicTemperature")
     "Measured supply air temperature" annotation (Placement(transformation(
-          extent={{-142,-56},{-102,-16}}), iconTransformation(extent={{-142,36},
-            {-102,76}})));
+          extent={{-142,-56},{-102,-16}}), iconTransformation(extent={{-140,40},
+            {-100,80}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirSupSetCoo(
     final unit="K",
@@ -64,7 +65,7 @@ block CoolingCoil "This block commands the cooling coil."
     final quantity="ThermodynamicTemperature")
     "Supply air cooling setpoint temperature" annotation (Placement(
         transformation(extent={{-142,-86},{-102,-46}}), iconTransformation(
-          extent={{-142,8},{-102,48}})));
+          extent={{-140,20},{-100,60}})));
 
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput phiAirEneRecWhe(
@@ -73,7 +74,7 @@ block CoolingCoil "This block commands the cooling coil."
     unit="1")
     "Measured relative humidity of air conditioned by energy recovery wheel"
     annotation (Placement(transformation(extent={{-142,34},{-102,74}}),
-        iconTransformation(extent={{-142,-78},{-102,-38}})));
+        iconTransformation(extent={{-140,-60},{-100,-20}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirEneRecWhe(
     final unit="K",
@@ -81,7 +82,7 @@ block CoolingCoil "This block commands the cooling coil."
     final quantity="ThermodynamicTemperature")
     "Measured dry bulb temperature of air conditioned by energy recovery wheel"
     annotation (Placement(transformation(extent={{-142,4},{-102,44}}),
-        iconTransformation(extent={{-142,-104},{-102,-64}})));
+        iconTransformation(extent={{-140,-82},{-100,-42}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirDis(
     final unit="K",
@@ -89,14 +90,14 @@ block CoolingCoil "This block commands the cooling coil."
     final quantity="ThermodynamicTemperature")
     "Measured discharge air temperature"             annotation (Placement(
         transformation(extent={{-142,64},{-102,104}}), iconTransformation(
-          extent={{-142,-52},{-102,-12}})));
+          extent={{-140,-40},{-100,0}})));
 
 
 
   // ---outputs---
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yCoiCoo
-    "Cooling coil control signal" annotation (Placement(transformation(extent={{
-            102,56},{142,96}}), iconTransformation(extent={{102,-20},{142,20}})));
+    "Cooling coil control signal" annotation (Placement(transformation(extent={{100,60},
+            {140,100}}),        iconTransformation(extent={{100,-20},{140,20}})));
 
   Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi TAirDewEneRecWhe
     "Calculates dewpoint temperature for air conditioned by energy recovery wheel"
@@ -122,10 +123,10 @@ block CoolingCoil "This block commands the cooling coil."
     annotation (Placement(transformation(extent={{-20,-14},{0,8}})));
 
   CDL.Reals.PIDWithReset               conPIDRegOpe(
-    controllerType=controllerTypeRegOpe,
-    k=kRegOpe,
-    Ti=TiRegOpe,
-    Td=TdRegOpe,
+    controllerType=controllerTypeCoiCooRegOpe,
+    k=kCoiCooRegOpe,
+    Ti=TiCoiCooRegOpe,
+    Td=TdCoiCooRegOpe,
     reverseActing=false)
     "PID controller for regular cooling coil operation mode" annotation (
       Placement(visible=true, transformation(
@@ -134,10 +135,10 @@ block CoolingCoil "This block commands the cooling coil."
         rotation=0)));
 
   CDL.Reals.PIDWithReset               conPIDDeh(
-    controllerType=controllerTypeDeh,
-    k=kDeh,
-    Ti=TiDeh,
-    Td=TdDeh,
+    controllerType=controllerTypeCoiCooDeh,
+    k=kCoiCooDeh,
+    Ti=TiCoiCooDeh,
+    Td=TdCoiCooDeh,
     reverseActing=false)
     "PID controller for cooling air in dehumidification mode" annotation (
       Placement(visible=true, transformation(
@@ -146,7 +147,7 @@ block CoolingCoil "This block commands the cooling coil."
         rotation=0)));
 
 
-  Buildings.Controls.OBC.CDL.Reals.AddParameter TSetCooDeh(p=-erwDPadj)
+  Buildings.Controls.OBC.CDL.Reals.AddParameter TSetCooDeh(p=-dTEneWheDewPoi)
     "Calculate cooling setpoint temperature for air in dehumidification mode"
     annotation (Placement(visible=true, transformation(
         origin={-30,36},
@@ -160,8 +161,8 @@ equation
   connect(swiFanSupPro.u2, uFanSupPro) annotation (Line(points={{20,-40},{6,-40},
           {6,-96},{-122,-96}}, color={255,0,255}));
 
-  connect(andDehEna.u1, uDeh) annotation (Line(points={{-22,-3},{-78,-3},{-78,-4},
-          {-122,-4}}, color={255,0,255}));
+  connect(andDehEna.u1, uDeh) annotation (Line(points={{-22,-3},{-78,-3},{-78,0},
+          {-120,0}},  color={255,0,255}));
 
   connect(uFanSupPro, andDehEna.u2) annotation (Line(points={{-122,-96},{-42,-96},
           {-42,-11.8},{-22,-11.8}}, color={255,0,255}));
@@ -170,7 +171,8 @@ equation
           76},{56,76}}, color={255,0,255}));
 
   connect(swiTSetCoo.y, yCoiCoo)
-    annotation (Line(points={{80,76},{122,76}}, color={0,0,127}));
+    annotation (Line(points={{80,76},{102,76},{102,80},{120,80}},
+                                                color={0,0,127}));
 
   connect(swiFanSupPro.y, swiTSetCoo.u3) annotation (Line(points={{44,-40},{46,-40},
           {46,68},{56,68}}, color={0,0,127}));
@@ -206,10 +208,21 @@ equation
           {-68,-96},{-68,-54}}, color={255,0,255}));
   connect(uFanSupPro, conPIDDeh.trigger) annotation (Line(points={{-122,-96},{
           10,-96},{10,54},{4,54},{4,68}}, color={255,0,255}));
+  connect(yCoiCoo, yCoiCoo)
+    annotation (Line(points={{120,80},{120,80}}, color={0,0,127}));
   annotation (
     defaultComponentName = "conCoiCoo",
-        Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(lineColor = {179, 151, 128}, fillColor = {255, 255, 255},
-            fillPattern =                                                                                                                                                                  FillPattern.Solid, extent = {{-100, 100}, {100, -100}}, radius = 10), Text(textColor = {28, 108, 200}, extent = {{-90, 180}, {90, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent = {{-98, 92}, {-54, 78}}, textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent = {{-110, 62}, {-70, 50}}, textString = "saT"), Text(textColor = {28, 108, 200}, extent = {{-98, 34}, {-58, 22}}, textString = "supCooSP"), Text(textColor = {28, 108, 200}, extent = {{-108, -26}, {-68, -38}}, textString = "ccT"), Text(textColor = {28, 108, 200}, extent = {{-100, -52}, {-60, -64}}, textString = "erwHum"), Text(textColor = {28, 108, 200}, extent = {{-108, -78}, {-68, -90}}, textString = "erwT"), Text(textColor = {28, 108, 200}, extent = {{-98, 0}, {-58, -12}}, textString = "dehumMode"), Text(textColor = {28, 108, 200}, extent = {{62, 8}, {106, -8}}, textString = "yCC"), Rectangle(lineColor = {28, 108, 200}, fillColor = {85, 255, 255},
+        Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={
+        Rectangle(
+          extent={{-100,100},{100,-100}},
+          lineColor={0,0,0},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid),                                                                                                                                                                                                        Text(textColor = {28, 108, 200}, extent = {{-90, 180}, {90, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent = {{-98, 92}, {-54, 78}}, textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent={{-110,66},
+              {-70,54}},                                                                                                                                                                                                        textString = "saT"), Text(textColor = {28, 108, 200}, extent={{-98,44},
+              {-58,32}},                                                                                                                                                                                                        textString = "supCooSP"), Text(textColor = {28, 108, 200}, extent={{-108,
+              -16},{-68,-28}},                                                                                                                                                                                                        textString = "ccT"), Text(textColor = {28, 108, 200}, extent={{-102,
+              -32},{-62,-44}},                                                                                                                                                                                                        textString = "erwHum"), Text(textColor = {28, 108, 200}, extent={{-106,
+              -56},{-66,-68}},                                                                                                                                                                                                        textString = "erwT"), Text(textColor = {28, 108, 200}, extent = {{-98, 0}, {-58, -12}}, textString = "dehumMode"), Text(textColor = {28, 108, 200}, extent = {{62, 8}, {106, -8}}, textString = "yCC"), Rectangle(lineColor = {28, 108, 200}, fillColor = {85, 255, 255},
             fillPattern =                                                                                                                                                                                                        FillPattern.Solid, extent = {{-22, 68}, {6, -66}}), Rectangle(lineColor = {28, 108, 200}, fillColor = {0, 0, 255},
             fillPattern =                                                                                                                                                                                                        FillPattern.Solid, extent = {{-14, 58}, {68, 56}}), Ellipse(lineColor = {28, 108, 200}, fillColor = {0, 0, 255},
             fillPattern =                                                                                                                                                                                                        FillPattern.Solid, extent = {{-16, 60}, {-10, 54}}), Rectangle(lineColor = {28, 108, 200}, fillColor = {0, 0, 255},

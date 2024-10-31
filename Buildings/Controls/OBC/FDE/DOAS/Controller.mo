@@ -1,51 +1,51 @@
 within Buildings.Controls.OBC.FDE.DOAS;
 block Controller "DOAS controller built from DOAS blocks."
 
- parameter Real erwDPadj(
+ parameter Real dTEneWheDewPoi(
   final unit = "K",
   final quantity = "TemperatureDifference") = 5
   "Value subtracted from ERW supply air dewpoint."
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  annotation(Dialog(tab="Limits and Thresholds", group = "Energy recovery wheel parameters"));
 
-  parameter CDL.Types.SimpleController controllerTypeDeh=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  parameter CDL.Types.SimpleController controllerTypeCoiCooDeh=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
     "PID controller type for cooling air in dehumidification mode"
-    annotation(Dialog(tab="Controller parameters", group = "Dehmidification mode parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Dehumidification mode controller parameters"));
 
-  parameter Real kDeh(
+  parameter Real kCoiCooDeh(
   final unit="1") = 1
     "Gain of conPIDDeh controller"
-    annotation(Dialog(tab="Controller parameters", group = "Dehmidification mode parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Dehumidification mode controller parameters"));
 
-  parameter Real TiDeh(
+  parameter Real TiCoiCooDeh(
   final unit="s") = 60
     "Time constant of integrator block for conPIDDeh controller"
-    annotation(Dialog(tab="Controller parameters", group = "Dehmidification mode parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Dehumidification mode controller parameters"));
 
-  parameter Real TdDeh(
+  parameter Real TdCoiCooDeh(
   final unit="s") = 0.1
     "Time constant of derivative block for conPIDDeh controller"
-    annotation(Dialog(tab="Controller parameters", group = "Dehmidification mode parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Dehumidification mode controller parameters"));
 
-  parameter CDL.Types.SimpleController controllerTypeRegOpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-    "PID controller for regular cooling coil operation mode"
-    annotation(Dialog(tab="Controller parameters", group = "Cooling Coil parameters"));
+  parameter CDL.Types.SimpleController controllerTypeCoiCooRegOpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+    "PID controller type for regular cooling coil operation mode"
+    annotation(Dialog(tab="Cooling coil", group = "Dehumidification mode controller parameters"));
 
-  parameter Real kRegOpe(
+  parameter Real kCoiCooRegOpe(
   final unit="1") = 1
     "Gain of conPIDRegOpe controller"
-    annotation(Dialog(tab="Controller parameters", group = "Cooling Coil parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Regular operation controller parameters"));
 
 
-  parameter Real TiRegOpe(
+  parameter Real TiCoiCooRegOpe(
   final unit="s")=60
     "Time constant of integrator block for conPIDRegOpe controller"
-    annotation(Dialog(tab="Controller parameters", group = "Cooling Coil parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Regular operation controller parameters"));
 
 
-  parameter Real TdRegOpe(
+  parameter Real TdCoiCooRegOpe(
   final unit="s")=0.1
     "Time constant of derivative block for conPIDRegOpe controller"
-    annotation(Dialog(tab="Controller parameters", group = "Cooling Coil parameters"));
+    annotation(Dialog(tab="Cooling coil", group = "Regular operation controller parameters"));
 
 
   parameter Real dehumSet(
@@ -110,44 +110,44 @@ block Controller "DOAS controller built from DOAS blocks."
   annotation(Dialog(tab="Limits and Thresholds", group = "Energy recovery wheel parameters"));
 
 
-  parameter CDL.Types.SimpleController controllerTypeEneWheHea=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-  "PI controller for heating loop"
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  parameter CDL.Types.SimpleController controllerTypeHeaRec=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  "PI controller type for energy recovery wheel heating recovery loop"
+  annotation(Dialog(tab = "Energy recovery wheel",group="Heating recovery controller parameters"));
 
 
-  parameter Real kEneWheHea(
+  parameter Real kHeaRec(
   final unit = "1") = 0.5
-  "PID heating loop gain value."
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  "PID heating recovery loop gain value."
+  annotation(Dialog(tab="Energy recovery wheel", group = "Heating recovery controller parameters"));
 
 
-  parameter Real TiEneWheHea(
+  parameter Real TiHeaRec(
   final unit = "s") = 60
-  "PID  heating loop time constant of integrator."
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  "PID  heating recovery loop time constant of integrator."
+  annotation(Dialog(tab="Energy recovery wheel", group = "Heating recovery controller parameters"));
 
-  parameter Real TdEneWheHea(
+  parameter Real TdHeaRec(
   final unit = "s") = 0.1
-  "PID heatig loop time constant of derivative block"
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  "PID heating recovery loop time constant of derivative block"
+  annotation(Dialog(tab="Energy recovery wheel", group = "Heating recovery controller parameters"));
 
-  parameter Real kEneWheCoo(
+  parameter CDL.Types.SimpleController controllerTypeCooRec=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  "PI controller type for energy recovery wheel cooling recovery loop"
+  annotation(Dialog(tab="Energy recovery wheel", group = "Cooling recovery controller parameters"));
+
+  parameter Real kCooRec(
   final unit = "1") = 0.5
-  "PID cooling loop gain value."
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  "PID cooling recovery loop gain value."
+  annotation(Dialog(tab="Energy recovery wheel", group = "Cooling recovery controller parameters"));
 
-  parameter Real TiEneWheCoo(
-  final unit = "s") = 60 "PID cooling loop time constant of integrator."
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  parameter Real TiCooRec(
+  final unit = "s") = 60 "PID cooling recovery loop time constant of integrator."
+  annotation(Dialog(tab="Energy recovery wheel", group = "Cooling recovery controller parameters"));
 
-  parameter CDL.Types.SimpleController controllerTypeEneWheCoo=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-  "PI controller for cooling loop"
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
-
-  parameter Real TdEneWheCoo(
+  parameter Real TdCooRec(
   final unit = "s") = 0.1
-  "PID cooling loop time constant of derivative block"
-  annotation(Dialog(tab="Controller parameters", group = "Energy recovery wheel parameters"));
+  "PID cooling recovery loop time constant of derivative block"
+  annotation(Dialog(tab="Energy recovery wheel", group = "Cooling recovery controller parameters"));
 
    parameter Real dPSetBui(
   final unit = "Pa",
@@ -158,42 +158,42 @@ block Controller "DOAS controller built from DOAS blocks."
   parameter Real kExhFan(
   final unit = "1") = 0.5
   "PID heating loop gain value."
-  annotation(Dialog(tab="Controller parameters", group = "Exhuast fan parameters"));
+  annotation(Dialog(tab="Exhaust fan", group = "Controller parameters"));
 
   parameter Real TiExhFan(
   final unit = "s") = 60
   "PID loop time constant of integrator."
-  annotation(Dialog(tab="Controller parameters", group = "Exhuast fan parameters"));
+  annotation(Dialog(tab="Exhaust fan", group = "Controller parameters"));
 
   parameter Real TdExhFan(
   final unit= "s") = 0.1 "Time constant of derivative block"
-  annotation(Dialog(tab="Controller parameters", group = "Exhuast fan parameters"));
+  annotation(Dialog(tab="Exhaust fan", group = "Controller parameters"));
 
   parameter CDL.Types.SimpleController controllerTypeExhFan=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-    "Type of controller"
-    annotation(Dialog(tab="Controller parameters", group = "Exhuast fan parameters"));
+    "PID controller type for exhaust fan"
+    annotation(Dialog(tab="Exhaust fan", group = "Controller parameters"));
 
   parameter CDL.Types.SimpleController controllerTypeCoiHea=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-   "Type of controller"
-   annotation(Dialog(tab="Controller parameters", group = "Heaing coil parameters"));
+   "PID controller type for heating coil"
+   annotation(Dialog(tab="Heating coil", group = "Controller parameters"));
 
   parameter Real kCoiHea(
    final unit= "1") = 0.5
   "Heating coil SAT PI gain value k."
-  annotation(Dialog(tab="Controller parameters", group = "Heaing coil parameters"));
+  annotation(Dialog(tab="Heating coil", group = "Controller parameters"));
 
   parameter Real TiCoiHea(
    final unit= "s") = 60
   "Heating coil SAT PI time constant value Ti."
-  annotation(Dialog(tab="Controller parameters", group = "Heaing coil parameters"));
+  annotation(Dialog(tab="Heating coil", group = "Controller parameters"));
 
   parameter Real TdCoiHea(
   final unit= "s") = 0.1 "Time constant of derivative block"
-  annotation(Dialog(tab="Controller parameters", group = "Heaing coil parameters"));
+  annotation(Dialog(tab="Heating coil", group = "Controller parameters"));
 
      parameter Boolean is_vav = true
   "True: System has zone terminals with variable damper position. False: System has zone terminals with constant damper position."
-  annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  annotation(Dialog(tab="Supply Fan", group = "Differential setpoint controller parameters"));
 
   parameter Real yMinDamSet(
   min = 0,
@@ -216,23 +216,23 @@ block Controller "DOAS controller built from DOAS blocks."
   "DDSP terminal damper percent open set point"
   annotation(Dialog(tab="Setpoints", group = "Supply fan parameters"));
 
-  parameter Real kDam(
+  parameter Real kdPSetPoi(
    final unit= "1") = 0.5
   "Damper position setpoint PI gain value k."
-  annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  annotation(Dialog(tab="Supply Fan", group = "Differential setpoint controller parameters"));
 
-  parameter Real TiDam(
+  parameter Real TidPSetPoi(
    final unit= "s") = 60
   "Damper position setpoint PI time constant value Ti."
-  annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  annotation(Dialog(tab="Supply Fan", group = "Differential setpoint controller parameters"));
 
-  parameter Real TdDam(
-   final unit= "s") = 0.1 "Time constant of derivative block for conPIDDam"
-   annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  parameter Real TddPSetPoi(
+   final unit= "s") = 0.1 "Time constant of derivative block for conPIDdSetPoi"
+   annotation(Dialog(tab="Supply Fan", group = "Differential setpoint controller parameters"));
 
-  parameter CDL.Types.SimpleController controllerTypeDam=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-  "Type of controller"
-  annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  parameter CDL.Types.SimpleController controllerTypedPSetPoi=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  "PI contoller type for differntial setpoint controller"
+  annotation(Dialog(tab="Supply Fan", group = "Differential setpoint controller parameters"));
 
   parameter Real dPDucSetCV(
   min = 0,
@@ -248,21 +248,21 @@ block Controller "DOAS controller built from DOAS blocks."
   parameter Real kFanSpe(
    final unit= "1") = 0.5 "
    Fan speed set point SAT PI gain value k."
-   annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+   annotation(Dialog(tab="Supply Fan", group = "Fan speed controller parameters "));
 
   parameter Real TdFanSpe(
    final unit= "s") = 60
    "Time constant of derivative block for conPIDFanSpe"
-   annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+   annotation(Dialog(tab="Supply Fan", group = "Fan speed controller parameters"));
 
   parameter Real TiFanSpe(
    final unit= "s") = 0.000025
   "Fan speed set point SAT PI time constant value Ti."
-  annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+  annotation(Dialog(tab="Supply Fan", group = "Fan speed controller parameters"));
 
   parameter CDL.Types.SimpleController controllerTypeFanSpe=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-    "Type of controller"
-    annotation(Dialog(tab="Controller parameters", group = "Supply fan parameters"));
+    "PI controller type for supply fan speed"
+    annotation(Dialog(tab="Supply Fan", group = "Fan speed controller parameters"));
 
   parameter Real TSupLowSet(
    final unit="K",
@@ -535,77 +535,77 @@ block Controller "DOAS controller built from DOAS blocks."
         iconTransformation(extent={{-140,280},{-100,320}})));
 equation
   connect(SFcon.Occ,Occ)  annotation (
-    Line(points={{-12,157},{-12,156},{-94,156},{-94,170},{-120,170}},
+    Line(points={{-12,158},{-12,156},{-94,156},{-94,170},{-120,170}},
                                                                  color = {255, 0, 255}));
-  connect(SFcon.uDamMaxOpe, uDamMaxOpe) annotation (Line(points={{-12,153.4},{-12,
+  connect(SFcon.uDamMaxOpe, uDamMaxOpe) annotation (Line(points={{-12,154},{-12,
           152},{-82,152},{-82,140},{-120,140}},
                                          color={0,0,127}));
-  connect(SFcon.dPAirDucSta, dPAirDucSta) annotation (Line(points={{-12,142.8},{
-          -90,142.8},{-90,80},{-120,80}},color={0,0,127}));
-  connect(SFcon.yFanSup, yFanSup) annotation (Line(points={{12,155.2},{90,155.2},
-          {90,120},{120,120}},
+  connect(SFcon.dPAirDucSta, dPAirDucSta) annotation (Line(points={{-12,144},{-90,
+          144},{-90,80},{-120,80}},      color={0,0,127}));
+  connect(SFcon.yFanSup, yFanSup) annotation (Line(points={{12,156},{90,156},{90,
+          120},{120,120}},
                      color={255,0,255}));
-  connect(SFcon.yFanSupSpe, yFanSupSpe) annotation (Line(points={{12,145.6},{80,
-          145.6},{80,90},{120,90}},color={0,0,127}));
+  connect(SFcon.yFanSupSpe, yFanSupSpe) annotation (Line(points={{12,146},{80,146},
+          {80,90},{120,90}},       color={0,0,127}));
 //connect(SFcon.supFanProof, DehumMod.supFanProof) annotation (
 // Line(points={{-62,68},{-56,68},{-56,25.2},{-50.2,25.2}},color={255,0,255}));
 //connect(SFcon.supFanProof, Cooling.supFanProof) annotation (
 // Line(points={{-62,68},{-56,68},{-56,36.4},{55.8,36.4}},color={255,0,255}));
-  connect(DehumMod.yDehMod, Cooling.uDeh) annotation (Line(points={{-21.8,40},{36,
-          40},{36,59.4},{49.8,59.4}},      color={255,0,255}));
-  connect(DehumMod.phiAirRet, phiAirRet) annotation (Line(points={{-46.2,40},{-62,
+  connect(DehumMod.yDehMod, Cooling.uDeh) annotation (Line(points={{-22,40},{36,
+          40},{36,60},{50,60}},            color={255,0,255}));
+  connect(DehumMod.phiAirRet, phiAirRet) annotation (Line(points={{-46,40},{-62,
           40},{-62,28},{-92,28},{-92,20},{-120,20}},
                                      color={0,0,127}));
-  connect(Cooling.TAirSup, TAirSup) annotation (Line(points={{49.8,65.6},{-84,65.6},
-          {-84,-20},{-120,-20}},       color={0,0,127}));
-  connect(Cooling.TAirDis, TAirDisCoiCoo) annotation (Line(points={{49.8,56.8},{
-          -86,56.8},{-86,-110},{-120,-110}},  color={0,0,127}));
-  connect(Cooling.phiAirEneRecWhe, phiAirEneRecWhe) annotation (Line(points={{49.8,
-          54.2},{-88,54.2},{-88,-140},{-120,-140}},      color={0,0,127}));
-  connect(Cooling.TAirEneRecWhe, TAirSupEneWhe) annotation (Line(points={{49.8,51.6},
-          {40,51.6},{40,36},{-14,36},{-14,-54},{-16,-54},{-16,-170},{-120,-170}},
+  connect(Cooling.TAirSup, TAirSup) annotation (Line(points={{50,66},{-84,66},{-84,
+          -20},{-120,-20}},            color={0,0,127}));
+  connect(Cooling.TAirDis, TAirDisCoiCoo) annotation (Line(points={{50,58},{-86,
+          58},{-86,-110},{-120,-110}},        color={0,0,127}));
+  connect(Cooling.phiAirEneRecWhe, phiAirEneRecWhe) annotation (Line(points={{50,56},
+          {-88,56},{-88,-140},{-120,-140}},              color={0,0,127}));
+  connect(Cooling.TAirEneRecWhe, TAirSupEneWhe) annotation (Line(points={{50,53.8},
+          {40,53.8},{40,36},{-14,36},{-14,-54},{-16,-54},{-16,-170},{-120,-170}},
                                                     color={0,0,127}));
-  connect(Cooling.yCoiCoo, yCoiCoo) annotation (Line(points={{74.2,60},{120,60}},
+  connect(Cooling.yCoiCoo, yCoiCoo) annotation (Line(points={{74,60},{120,60}},
                              color={0,0,127}));
 //connect(SFcon.supFanProof, Heating.supFanProof) annotation (
 //Line(points={{-62,68},{-56,68},{-56,-8},{55.8,-8}},color={255,0,255}));
   connect(TAirSup, Heating.TAirSup) annotation (Line(points={{-120,-20},{16,-20},
-          {16,5},{47.8,5}},      color={0,0,127}));
-  connect(Heating.yCoiHea, yCoiHea) annotation (Line(points={{72.2,10},{88,10},{
-          88,30},{120,30}},  color={0,0,127}));
+          {16,4},{48,4}},        color={0,0,127}));
+  connect(Heating.yCoiHea, yCoiHea) annotation (Line(points={{72,10},{88,10},{88,
+          30},{120,30}},     color={0,0,127}));
   connect(ERWcon.yEneRecWheEna, yEneRecWheEna)
-    annotation (Line(points={{82.2,-50},{96,-50},{96,-30},{120,-30}},
+    annotation (Line(points={{82,-50},{96,-50},{96,-30},{120,-30}},
                                                     color={255,0,255}));
-  connect(ERWcon.yEneRecWheSpe, yEneRecWheSpe) annotation (Line(points={{82.2,-56},
+  connect(ERWcon.yEneRecWheSpe, yEneRecWheSpe) annotation (Line(points={{82,-56},
           {92,-56},{92,-60},{120,-60}},      color={0,0,127}));
 // connect(SFcon.supFanProof, ERWcon.supFanProof) annotation (
 //Line(points={{-62,68},{-56,68},{-56,-46.2},{55.8,-46.2}},color={255,0,255}));
-  connect(ERWcon.yBypDam, yBypDam) annotation (Line(points={{82.2,-44},{90,-44},
-          {90,0},{120,0}},     color={255,0,255}));
+  connect(ERWcon.yBypDam, yBypDam) annotation (Line(points={{82,-44},{90,-44},{90,
+          0},{120,0}},         color={255,0,255}));
 //connect(SFcon.supFanProof, EconMod.supFanProof) annotation (
 //Line(points={{-62,68},{-56,68},{-56,-25},{23.8,-25}}, color={255,0,255}));
   connect(TAirOut, ERWcon.TAirOut) annotation (Line(points={{-120,-80},{-22,-80},
-          {-22,-51.8},{57.8,-51.8}}, color={0,0,127}));
+          {-22,-52},{58,-52}},       color={0,0,127}));
   connect(TAirSupEneWhe, ERWcon.TAirSupEneWhe) annotation (Line(points={{-120,-170},
-          {-16,-170},{-16,-54.8},{57.8,-54.8}}, color={0,0,127}));
+          {-16,-170},{-16,-54},{58,-54}},       color={0,0,127}));
 // connect(SFcon.supFanProof, EFcon.supFanProof) annotation (
 //Line(points={{-62,68},{-56,68},{-56,-90},{56,-90}}, color={255,0,255}));
   connect(uFanSupPro, SFcon.uFanSupPro) annotation (Line(points={{-120,110},{-96,
-          110},{-96,140},{-24,140},{-24,146.4},{-12,146.4}},
+          110},{-96,140},{-24,140},{-24,148},{-12,148}},
                                       color={255,0,255}));
   connect(uFanSupPro, DehumMod.uFanSupPro) annotation (Line(points={{-120,110},{
-          -96,110},{-96,140},{-58,140},{-58,47.2},{-46.2,47.2}},
+          -96,110},{-96,140},{-58,140},{-58,46},{-46,46}},
                                    color={255,0,255}));
   connect(uFanSupPro, Cooling.uFanSupPro) annotation (Line(points={{-120,110},{-96,
-          110},{-96,60},{-58,60},{-58,112},{48,112},{48,68.4},{49.8,68.4}},
+          110},{-96,60},{-58,60},{-58,112},{48,112},{48,68},{50,68}},
                                        color={255,0,255}));
   connect(uFanSupPro, Heating.uFanSupPro) annotation (Line(points={{-120,110},{-96,
-          110},{-96,60},{-58,60},{-58,112},{48,112},{48,22},{42,22},{42,10},{47.8,
+          110},{-96,60},{-58,60},{-58,112},{48,112},{48,22},{42,22},{42,10},{48,
           10}},                      color={255,0,255}));
   connect(uFanSupPro, ERWcon.uFanSupPro) annotation (Line(points={{-120,110},{24,
-          110},{24,-42.2},{57.8,-42.2}},color={255,0,255}));
-  connect(ERWcon.TAirRet, TAirRet) annotation (Line(points={{57.8,-48.2},{-88,-48.2},
-          {-88,-50},{-120,-50}},   color={0,0,127}));
+          110},{24,-42},{58,-42}},      color={255,0,255}));
+  connect(ERWcon.TAirRet, TAirRet) annotation (Line(points={{58,-48},{-88,-48},{
+          -88,-50},{-120,-50}},    color={0,0,127}));
   connect(EFcon1.yExhFanSta, yExhFanSta) annotation (Line(points={{52,-114},{94,
           -114},{94,-100},{120,-100}}, color={255,0,255}));
   connect(EFcon1.yExhFanSpe, yExhFanSpe) annotation (Line(points={{52,-126},{80,
@@ -615,16 +615,16 @@ equation
   connect(dPAirStaBui, EFcon1.dPAirStaBui) annotation (Line(points={{-120,-230},
           {-90,-230},{-90,-172},{20,-172},{20,-126.4},{28,-126.4}}, color={0,0,
           127}));
-  connect(DehumMod.yDehMod, TSupSetpt.uDehMod) annotation (Line(points={{-21.8,40},
-          {-12,40},{-12,23}},           color={255,0,255}));
+  connect(DehumMod.yDehMod, TSupSetpt.uDehMod) annotation (Line(points={{-22,40},
+          {-12,40},{-12,24}},           color={255,0,255}));
   connect(TAirHig, TSupSetpt.TAirHig) annotation (Line(points={{-120,50},{-78,50},
-          {-78,16.4},{-12,16.4}},color={0,0,127}));
-  connect(TSupSetpt.ySupHeaSet, Heating.TAirSupSetHea) annotation (Line(points={{12,14.2},
-          {29.9,14.2},{29.9,14.8},{47.8,14.8}},        color={0,0,127}));
+          {-78,16},{-12,16}},    color={0,0,127}));
+  connect(TSupSetpt.ySupHeaSet, Heating.TAirSupSetHea) annotation (Line(points={{12,14},
+          {29.9,14},{29.9,14},{48,14}},                color={0,0,127}));
   connect(TAirOut, EconMod1.TAirOut) annotation (Line(points={{-120,-80},{-22,-80},
           {-22,-30},{27.8,-30}},                             color={0,0,127}));
-  connect(TSupSetpt.ySupCooSet, EconMod1.TAirSupSetCoo) annotation (Line(points={{12,22.8},
-          {22,22.8},{22,-16},{20,-16},{20,-37},{27.8,-37}},
+  connect(TSupSetpt.ySupCooSet, EconMod1.TAirSupSetCoo) annotation (Line(points={{12,22},
+          {22,22},{22,-16},{20,-16},{20,-37},{27.8,-37}},
                                                   color={0,0,127}));
   connect(uFanSupPro, EconMod1.uFanSupPro) annotation (Line(points={{-120,110},{
           -46,110},{-46,-23},{27.8,-23}},color={255,0,255}));
@@ -632,17 +632,17 @@ equation
           110},{-96,60},{-58,60},{-58,-114},{28,-114}},
                                          color={255,0,255}));
   connect(EconMod1.yEcoMod, ERWcon.uEcoMod) annotation (Line(points={{52.2,-30},
-          {54,-30},{54,-45.2},{57.8,-45.2}},                   color={255,0,255}));
-  connect(TSupSetpt.ySupCooSet, Cooling.TAirSupSetCoo) annotation (Line(points={{12,22.8},
-          {28,22.8},{28,62.8},{49.8,62.8}},          color={0,0,127}));
-  connect(TSupSetpt.ySupSet, ERWcon.TAirSupSetEneWhe) annotation (Line(points={{12,19.4},
-          {12,18},{20,18},{20,-16},{22,-16},{22,-38},{20,-38},{20,-57.8},{57.8,-57.8}},
+          {54,-30},{54,-44},{58,-44}},                         color={255,0,255}));
+  connect(TSupSetpt.ySupCooSet, Cooling.TAirSupSetCoo) annotation (Line(points={{12,22},
+          {28,22},{28,64},{50,64}},                  color={0,0,127}));
+  connect(TSupSetpt.ySupSet, ERWcon.TAirSupSetEneWhe) annotation (Line(points={{12,18.2},
+          {12,18},{20,18},{20,-16},{22,-16},{22,-38},{20,-38},{20,-58},{58,-58}},
                                                       color={0,0,127}));
   connect(TZonHeaSet, TSupSetpt.TZonHeaSet) annotation (Line(points={{-120,200},
-          {-98,200},{-98,14},{-12,14}},
+          {-98,200},{-98,12},{-12,12}},
                                      color={0,0,127}));
   connect(TZonCooSet, TSupSetpt.TZonCooSet) annotation (Line(points={{-120,230},
-          {-88,230},{-88,54},{-80,54},{-80,21},{-12,21}},
+          {-88,230},{-88,54},{-80,54},{-80,20},{-12,20}},
                                      color={0,0,127}));
   annotation (
     defaultComponentName = "DOAScon",

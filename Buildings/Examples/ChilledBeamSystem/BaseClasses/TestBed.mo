@@ -105,58 +105,68 @@ block TestBed
   parameter HeatTransfer.Data.Solids.GypsumBoard matGyp2(final x = 0.025, final k = 0.16, final c = 830, final d = 784, final nStaRef = 2) "Gypsum board" annotation (
     Placement(transformation(extent = {{490, 280}, {510, 300}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uPumSta "Pump enable signal" annotation (
-    Placement(transformation(extent = {{-380, -130}, {-340, -90}}), iconTransformation(extent = {{-140, -160}, {-100, -120}})));
+    Placement(transformation(extent = {{-380, -130}, {-340, -90}}), iconTransformation(extent={{-142,
+            -160},{-102,-120}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uFanSta "Supply fan enable signal" annotation (
-    Placement(transformation(extent={{-382,48},{-342,88}}),      iconTransformation(extent = {{-140, 0}, {-100, 40}})));
+    Placement(transformation(extent={{-382,48},{-342,88}}),      iconTransformation(extent={{-142,2},
+            {-102,42}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uFanSpe
     "Fan speed signal"                                                       annotation (
     Placement(transformation(extent={{-380,18},{-340,58}}),       iconTransformation(extent={{-142,
-            -52},{-102,-12}})));
+            -42},{-102,-2}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uPumSpe "Pump speed signal" annotation (
-    Placement(transformation(extent = {{-380, -160}, {-340, -120}}), iconTransformation(extent = {{-140, -200}, {-100, -160}})));
+    Placement(transformation(extent = {{-380, -160}, {-340, -120}}), iconTransformation(extent={{-142,
+            -200},{-102,-160}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TChiWatSup "Chilled water supply temperature" annotation (
-    Placement(visible = true, transformation(origin = {0, 0}, extent = {{-380, -200}, {-340, -160}}, rotation = 0), iconTransformation(origin = {-121, -211}, extent = {{-21, -21}, {21, 21}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {0, 0}, extent = {{-380, -200}, {-340, -160}}, rotation = 0), iconTransformation(origin={-123,
+            -219},                                                                                                                                            extent = {{-21, -21}, {21, 21}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uHeaCoi "Heating coil control signal" annotation (
-    Placement(transformation(extent = {{-380, -70}, {-340, -30}}), iconTransformation(extent = {{-140, -80}, {-100, -40}})));
+    Placement(transformation(extent = {{-380, -70}, {-340, -30}}), iconTransformation(extent={{-142,
+            -80},{-102,-40}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uCooCoi "AHU cooling coil control signal" annotation (
-    Placement(transformation(extent = {{-380, -100}, {-340, -60}}), iconTransformation(extent = {{-140, -120}, {-100, -80}})));
+    Placement(transformation(extent = {{-380, -100}, {-340, -60}}), iconTransformation(extent={{-142,
+            -122},{-102,-82}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uCAVDam[5] "CAV damper signal" annotation (
-    Placement(transformation(extent = {{-380, 120}, {-340, 160}}), iconTransformation(extent = {{-140, 80}, {-100, 120}})));
+    Placement(transformation(extent = {{-380, 120}, {-340, 160}}), iconTransformation(extent={{-142,80},
+            {-102,120}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uCAVReh[5] "CAV reheat signal" annotation (
-    Placement(transformation(extent = {{-380, 80}, {-340, 120}}), iconTransformation(extent = {{-140, 40}, {-100, 80}})));
+    Placement(transformation(extent = {{-380, 80}, {-340, 120}}), iconTransformation(extent={{-142,40},
+            {-102,80}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uBypValPos "Bypass valve position signal" annotation (
-    Placement(transformation(extent = {{-380, 200}, {-340, 240}}), iconTransformation(extent = {{-140, 160}, {-100, 200}})));
+    Placement(transformation(extent = {{-380, 200}, {-340, 240}}), iconTransformation(extent={{-142,
+            160},{-102,200}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uChiWatVal[5] "Chilled water valve position signal" annotation (
-    Placement(transformation(extent = {{-380, 160}, {-340, 200}}), iconTransformation(extent = {{-140, 120}, {-100, 160}})));
+    Placement(transformation(extent = {{-380, 160}, {-340, 200}}), iconTransformation(extent={{-142,
+            120},{-102,160}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yPumSta "Pump proven on" annotation (
-    Placement(visible = true, transformation(origin = {2, 30}, extent = {{580, -140}, {620, -100}}, rotation = 0), iconTransformation(origin={0,68},    extent = {{100, -160}, {140, -120}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {2, 30}, extent = {{580, -140}, {620, -100}}, rotation = 0), iconTransformation(origin={0,80},    extent = {{100, -160}, {140, -120}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yFanSta "Supply fan proven on" annotation (
-    Placement(visible = true, transformation(origin = {-2, 32}, extent = {{580, -70}, {620, -30}}, rotation = 0), iconTransformation(origin={0,52},   extent = {{100, -80}, {140, -40}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-2, 32}, extent = {{580, -70}, {620, -30}}, rotation = 0), iconTransformation(origin={0,60},   extent = {{100, -80}, {140, -40}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput dPChiWat "Measured chilled water differential presure" annotation (
-    Placement(visible = true, transformation(origin = {-2, 20}, extent = {{580, -110}, {620, -70}}, rotation = 0), iconTransformation(origin={0,60},    extent = {{100, -120}, {140, -80}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-2, 20}, extent = {{580, -110}, {620, -70}}, rotation = 0), iconTransformation(origin={0,80},    extent = {{100, -120}, {140, -80}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput dPDOASAir "Measured airloop differential presure" annotation (
     Placement(visible = true, transformation(origin = {0, 36}, extent = {{580, -40}, {620, 0}}, rotation = 0), iconTransformation(origin={0,72},   extent = {{100, -40}, {140, 0}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TDOASDis(final unit = "K", displayUnit = "K", final quantity = "ThermodynamicTemperature") "Measured DOAS discharge air temperature" annotation (
-    Placement(visible = true, transformation(origin = {0, 28}, extent = {{580, -170}, {620, -130}}, rotation = 0), iconTransformation(origin={0,80},    extent = {{100, -200}, {140, -160}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {0, 28}, extent = {{580, -170}, {620, -130}}, rotation = 0), iconTransformation(origin={0,100},   extent = {{100, -200}, {140, -160}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yChiWatVal[5] "Measured chilled water valve position" annotation (
     Placement(transformation(extent = {{580, 60}, {620, 100}}), iconTransformation(extent={{100,100},
             {140,140}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yBypValPos "Measured bypass valve position" annotation (
-    Placement(transformation(extent = {{580, 100}, {620, 140}}), iconTransformation(extent={{100,130},
-            {140,170}})));
+    Placement(transformation(extent = {{580, 100}, {620, 140}}), iconTransformation(extent={{100,140},
+            {140,180}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yDamPos[5] "Measured CAV damper position" annotation (
-    Placement(visible = true, transformation(origin = {2, 46}, extent = {{580, -10}, {620, 30}}, rotation = 0), iconTransformation(origin={0,62},   extent = {{100, 0}, {140, 40}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {2, 46}, extent = {{580, -10}, {620, 30}}, rotation = 0), iconTransformation(origin={0,60},   extent = {{100, 0}, {140, 40}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput relHumDOASRet "Measured DOAS return air relative humidity" annotation (
-    Placement(visible = true, transformation(origin = {2, 28}, extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,70},    extent = {{100, -240}, {140, -200}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {2, 28}, extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,100},   extent = {{100, -240}, {140, -200}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput TZon[5] "Measured zone temperature" annotation (
-    Placement(transformation(extent = {{580, 240}, {620, 280}}), iconTransformation(extent={{100,188},
-            {140,228}})));
+    Placement(transformation(extent = {{580, 240}, {620, 280}}), iconTransformation(extent={{100,180},
+            {140,220}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yRelHumZon[5] "Measured zone relative humidity" annotation (
-    Placement(transformation(extent = {{580, 280}, {620, 320}}), iconTransformation(extent={{100,212},
-            {140,252}})));
+    Placement(transformation(extent = {{580, 280}, {620, 320}}), iconTransformation(extent={{100,200},
+            {140,240}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput VDisAir_flow[5] "Measured zone discharge air volume flow rate" annotation (
-    Placement(transformation(extent = {{580, 200}, {620, 240}}), iconTransformation(extent={{100,162},
-            {140,202}})));
+    Placement(transformation(extent = {{580, 200}, {620, 240}}), iconTransformation(extent={{100,160},
+            {140,200}})));
   Buildings.Fluid.FixedResistances.Junction jun(redeclare package Medium = MediumW, final m_flow_nominal = {mChiWatTot_flow_nominal, -mChiWatTot_flow_nominal, -mChiWatTot_flow_nominal}, final dp_nominal = {0, 0, 0}) "Chilled water splitter" annotation (
     Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {100, -40})));
   Buildings.Fluid.FixedResistances.Junction jun3(redeclare package Medium = MediumW, final m_flow_nominal = {mChiWatTot_flow_nominal, -mChiWatTot_flow_nominal, mChiWatTot_flow_nominal}, final dp_nominal = {0, 0, 0}) "Chilled water mixer" annotation (
@@ -205,9 +215,11 @@ block TestBed
     Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {100, -174})));
   Buildings.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium = MediumA, final m_flow_nominal = mAirTot_flow_nominal) "AHU discharge air temperature sensor" annotation (
     Placement(transformation(extent = {{-40, -10}, {-20, 10}})));
-  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium = MediumW) "Differential pressure sensor between chilled water supply and return" annotation (
+  Buildings.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium
+      =                                                                         MediumW) "Differential pressure sensor between chilled water supply and return" annotation (
     Placement(transformation(extent = {{150, -80}, {170, -60}})));
-  Buildings.Fluid.Sensors.RelativePressure senRelPre1(redeclare package Medium = MediumA) "Differential pressure sensor between AHU discharge and outdoor air" annotation (
+  Buildings.Fluid.Sensors.RelativePressure senRelPre1(redeclare package Medium
+      =                                                                          MediumA) "Differential pressure sensor between AHU discharge and outdoor air" annotation (
     Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin={-50,32})));
   Modelica.Blocks.Routing.DeMultiplex demux(final n = 5) "Demultiplexer for chilled water valve signals" annotation (
     Placement(transformation(extent={{42,-30},{62,-10}})));
@@ -438,7 +450,8 @@ block TestBed
   Modelica.Blocks.Routing.DeMultiplex demux3(n = 5) "Demultiplexer for zone heat gain signal" annotation (
     Placement(transformation(extent = {{80, 280}, {100, 300}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput QFlo[5] "Heat flow rate into the zone" annotation (
-    Placement(transformation(extent = {{-380, 270}, {-340, 310}}), iconTransformation(extent = {{-140, 200}, {-100, 240}})));
+    Placement(transformation(extent = {{-380, 270}, {-340, 310}}), iconTransformation(extent={{-142,
+            200},{-102,240}})));
   Buildings.Controls.OBC.CDL.Logical.Pre pre1 "Logical pre block" annotation (
     Placement(visible = true, transformation(origin = {-14, 8}, extent = {{-320, 60}, {-300, 80}}, rotation = 0)));
   Fluid.FixedResistances.Junction jun18(redeclare package Medium = MediumW, m_flow_nominal = {mAirTot_flow_nominal, -mAirTot_flow_nominal, -mAirTot_flow_nominal}, dp_nominal = {0, 0, 0}) "Hot water splitter" annotation (
@@ -466,7 +479,7 @@ block TestBed
   Fluid.FixedResistances.Junction jun21(redeclare package Medium = MediumW, m_flow_nominal = {mAirTot_flow_nominal, -mAirTot_flow_nominal, -mAirTot_flow_nominal}, dp_nominal = {0, 0, 0}) "Hot water splitter" annotation (
     Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {320, 70})));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput OutdoorAirTemp "Outdoor Air Dry Bulb Temperature" annotation (
-    Placement(visible = true, transformation(origin={8,-52},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,16},   extent = {{100, -240}, {140, -200}}, rotation = 0)));
+    Placement(visible = true, transformation(origin={8,-52},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,60},   extent = {{100, -240}, {140, -200}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Logical.TrueDelay truDel(delayTime = 10) annotation (
     Placement(visible = true, transformation(origin = {-288, 84}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput exhFanSta "Exhaust Fan Proven on" annotation (
@@ -477,13 +490,13 @@ block TestBed
       Medium =                                                                         MediumA) annotation (
     Placement(visible = true, transformation(origin = {-130, 54}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput bldgSP "Building Static Pressure SetPoint" annotation (
-    Placement(visible = true, transformation(origin={4,-106},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={-480,-44},    extent = {{580, -200}, {620, -160}}, rotation = 0)));
+    Placement(visible = true, transformation(origin={4,-106},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={-480,0},      extent = {{580, -200}, {620, -160}}, rotation = 0)));
   Buildings.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = MediumA) annotation (
     Placement(visible = true, transformation(origin={-296,6},     extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput rAT annotation (
-    Placement(visible = true, transformation(origin={2,-76},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={-2,44},  extent = {{100, -240}, {140, -200}}, rotation = 0)));
+    Placement(visible = true, transformation(origin={2,-76},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,80},   extent = {{100, -240}, {140, -200}}, rotation = 0)));
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput erwsuphum "ERW supply relative humidity sensor" annotation (
-    Placement(visible = true, transformation(origin = {0, -14}, extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,94},    extent = {{100, -240}, {140, -200}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {0, -14}, extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={0,120},   extent = {{100, -240}, {140, -200}}, rotation = 0)));
   Buildings.Fluid.Sensors.RelativeHumidityTwoPort senRelHum1(redeclare package
       Medium =                                                                          MediumA,
       m_flow_nominal=mAirTot_flow_nominal)                                                       annotation (
@@ -496,8 +509,8 @@ block TestBed
     Placement(visible = true, transformation(origin = {74, -116}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Controls.OBC.CDL.Interfaces.RealInput uEneRecWheSpe
     "Energy Recovery speed signal" annotation (Placement(transformation(
-          extent={{-380,-10},{-340,30}}), iconTransformation(extent={{
-            -142,-26},{-102,14}})));
+          extent={{-380,-10},{-340,30}}), iconTransformation(extent={{-142,-20},
+            {-102,20}})));
   Fluid.HeatExchangers.ThermalWheels.Sensible.SpeedControlled whe(
     redeclare package Medium1 = MediumA,
     redeclare package Medium2 = MediumA,
@@ -513,7 +526,7 @@ block TestBed
         rotation=0)));
   Controls.OBC.CDL.Interfaces.RealOutput           TEneWhe
     "Temperature of air leaving the energy recovery wheel"                                    annotation (
-    Placement(visible = true, transformation(origin={2,-130},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={-480,-66},    extent = {{580, -200}, {620, -160}}, rotation = 0)));
+    Placement(visible = true, transformation(origin={2,-130},    extent = {{580, -200}, {620, -160}}, rotation = 0), iconTransformation(origin={-480,-40},    extent = {{580, -200}, {620, -160}}, rotation = 0)));
 equation
   connect(jun.port_3, val.port_a) annotation (
     Line(points = {{110, -40}, {120, -40}}, color = {0, 127, 255}));
@@ -949,7 +962,8 @@ equation
           -184,43},{-184,-394},{556,-394},{556,-310},{602,-310}}, color={
           0,0,127}));
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -240}, {100, 240}}), graphics={  Text(textColor = {0, 0, 255}, extent = {{-140, 280}, {140, 240}}, textString = "%name"), Rectangle(origin = {-1, -5}, lineColor = {0, 0, 127}, fillColor = {255, 255, 255},
-            fillPattern =                                                                                                                                                                                                        FillPattern.Solid, extent = {{-101, -247}, {101, 247}})}),
+    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -240}, {100, 240}}), graphics={                                                                                           Rectangle(origin = {-1, -5}, lineColor = {0, 0, 127}, fillColor = {255, 255, 255},
+            fillPattern =                                                                                                                                                                                                        FillPattern.Solid, extent = {{-101, -247}, {101, 247}}),
+                                                                                                         Text(textColor = {0, 0, 255}, extent = {{-140, 280}, {140, 240}}, textString = "%name")}),
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-340, -320}, {580, 340}})));
 end TestBed;

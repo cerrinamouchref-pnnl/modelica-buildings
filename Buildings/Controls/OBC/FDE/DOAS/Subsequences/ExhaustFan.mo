@@ -18,7 +18,7 @@ block ExhaustFan "This block manages start, stop, and speed of the exhaust fan."
   final unit= "s") = 0.1 "Time constant of derivative block";
 
    parameter CDL.Types.SimpleController controllerTypeExhFan=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-    "Type of controller";
+    "PID controller type for exhaust fan";
 
 
   // ---inputs---
@@ -109,9 +109,9 @@ equation
 
   annotation (
     defaultComponentName = "EFcon",
-    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(lineColor = {179, 151, 128}, fillColor = {255, 255, 255},
+    Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(lineColor={0,0,0},           fillColor = {255, 255, 255},
             fillPattern=
-FillPattern.Solid, extent = {{-100, 100}, {100, -100}}, radius = 10), Rectangle(lineColor = {162, 29, 33}, fillColor = {255, 255, 255},
+FillPattern.Solid, extent = {{-100, 100}, {100, -100}}, radius=0),    Rectangle(lineColor = {162, 29, 33}, fillColor = {255, 255, 255},
             fillPattern=
 FillPattern.Solid, extent = {{-48, 40}, {14, -14}}), Text(textColor = {28, 108, 200}, extent = {{-90, 180}, {90, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Ellipse(lineColor = {162, 29, 33}, fillColor = {255, 255, 255},
             fillPattern=

@@ -87,7 +87,8 @@ equation
     defaultComponentName = "EconMod",
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(fillColor = {255, 255, 255},
     fillPattern=
-FillPattern.Solid, extent = {{-102, 100}, {98, -100}}, radius = 10), Text(textColor = {28, 108, 200}, extent = {{-90, 180}, {90, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent = {{-96, 78}, {-52, 64}}, textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent = {{-108, 8}, {-64, -6}}, textString = "oaT"), Text(textColor = {28, 108, 200}, extent = {{-96, -64}, {-56, -76}}, textString = "supCooSP"), Text(textColor = {28, 108, 200}, extent = {{58, 6}, {96, -6}}, textString = "ecoMode"), Rectangle(lineColor = {28, 108, 200},fillColor = {0, 0, 255},
+FillPattern.Solid, extent={{-100,100},{100,-100}},     radius=0),    Text(textColor = {28, 108, 200}, extent={{-88,186},
+              {92,82}},                                                                                                                textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent = {{-96, 78}, {-52, 64}}, textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent = {{-108, 8}, {-64, -6}}, textString = "oaT"), Text(textColor = {28, 108, 200}, extent = {{-96, -64}, {-56, -76}}, textString = "supCooSP"), Text(textColor = {28, 108, 200}, extent = {{58, 6}, {96, -6}}, textString = "ecoMode"), Rectangle(lineColor = {28, 108, 200},fillColor = {0, 0, 255},
       fillPattern=
 FillPattern.Solid, extent = {{18, -2}, {22, -64}}), Text(textColor = {28, 108, 200}, extent = {{16, -32}, {54, -44}}, textString = "On"), Text(textColor = {28, 108, 200}, extent = {{14, 38}, {52, 26}}, textString = "Off"), Rectangle(lineColor = {244, 125, 35}, fillColor = {244, 125, 35},
       fillPattern=

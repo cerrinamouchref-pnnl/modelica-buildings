@@ -18,82 +18,82 @@ block EnergyWheel "This block commands the energy recovery wheel and associated 
   final quantity = "Time") = 300
   "Minimum delay after OAT/RAT delta falls below set point.";
 
-  parameter CDL.Types.SimpleController controllerTypeEneWheHea=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-  "PI controller for heating loop";
+  parameter CDL.Types.SimpleController controllerTypeHeaREc=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  "PI controller type for energy recovery wheel heating recovery loop";
 
-  parameter Real kEneWheHea(
+  parameter Real kHeaRec(
   final unit = "1") = 0.5
-  "PID heating loop gain value.";
+  "PID heating recovery loop gain value.";
 
-  parameter Real TiEneWheHea(
+  parameter Real TiHeaRec(
   final unit = "s") = 60
-  "PID  heating loop time constant of integrator.";
+  "PID  heating recovery loop time constant of integrator.";
 
-  parameter Real TdEneWheHea(
+  parameter Real TdHeaRec(
   final unit = "s") = 0.1
-  "PID heating loop time constant of derivative block";
+  "PID heating recovery loop time constant of derivative block";
 
-  parameter Real kEneWheCoo(
+  parameter Real kCooRec(
   final unit = "1") = 0.5
-  "PID cooling loop gain value.";
+  "PID cooling recovery loop gain value.";
 
-  parameter Real TiEneWheCoo(
-  final unit = "s") = 60 "PID cooling loop time constant of integrator.";
+  parameter Real TiCooRec(
+  final unit = "s") = 60 "PID cooling recovery loop time constant of integrator.";
 
-  parameter CDL.Types.SimpleController controllerTypeEneWheCoo=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
-  "PI controller for cooling loop";
+  parameter CDL.Types.SimpleController controllerTypeCooRec=Buildings.Controls.OBC.CDL.Types.SimpleController.PI
+  "PID controller  type for energy recovery wheel cooling recovery loop";
 
-  parameter Real TdEneWheCoo(
+  parameter Real TdCooRec(
   final unit = "s") = 0.1
-  "PID cooling loop time constant of derivative block";
+  "PID cooling recovery loop time constant of derivative block";
 
 // ---inputs---
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uFanSupPro
     "True when the supply fan is proven on." annotation (Placement(
-        transformation(extent={{-142,60},{-102,100}}), iconTransformation(
-          extent={{-142,58},{-102,98}})));
+        transformation(extent={{-140,60},{-100,100}}), iconTransformation(
+          extent={{-140,60},{-100,100}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirOut
     "Outside air temperature sensor." annotation (Placement(transformation(
-          extent={{-142,-38},{-102,2}}), iconTransformation(extent={{-142,-38},{
-            -102,2}})));
+          extent={{-140,-40},{-100,0}}), iconTransformation(extent={{-140,-40},{
+            -100,0}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirRet
     "Return air temperature sensor." annotation (Placement(transformation(
-          extent={{-142,0},{-102,40}}), iconTransformation(extent={{-142,-2},{-102,
-            38}})));
+          extent={{-140,0},{-100,40}}), iconTransformation(extent={{-140,0},{-100,
+            40}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uEcoMod "True when economizer mode is active."
-  annotation(Placement(transformation(extent = {{-142, 30}, {-102, 70}}),
-    iconTransformation(extent = {{-142, 28}, {-102, 68}})));
+  annotation(Placement(transformation(extent={{-140,40},{-100,80}}),
+    iconTransformation(extent={{-140,40},{-100,80}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirSupEneWhe
     "Energy recovery wheel supply air temperature." annotation (Placement(
         transformation(extent={{-142,-74},{-102,-34}}), iconTransformation(
-          extent={{-142,-68},{-102,-28}})));
+          extent={{-140,-60},{-100,-20}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirSupSetEneWhe
     "Primary supply air temperature set point." annotation (Placement(
         transformation(extent={{-142,-106},{-102,-66}}), iconTransformation(
-          extent={{-142,-98},{-102,-58}})));
+          extent={{-140,-100},{-100,-60}})));
 
 // ---outputs---
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yEneRecWheEna
     "Command to enable the energy recovery wheel." annotation (Placement(
-        transformation(extent={{102,0},{142,40}}), iconTransformation(extent={{
-            102,-20},{142,20}})));
+        transformation(extent={{102,0},{142,40}}), iconTransformation(extent={{100,-20},
+            {140,20}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput yBypDam
     "Bypass damper command; true when commanded full open." annotation (
       Placement(transformation(extent={{102,46},{142,86}}), iconTransformation(
-          extent={{102,40},{142,80}})));
+          extent={{100,40},{140,80}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput yEneRecWheSpe(
     final unit="1",
     final min=0,
     final max=1) "Energy recovery wheel speed command." annotation (Placement(
-        transformation(extent={{102,-96},{142,-56}}), iconTransformation(extent=
-           {{102,-80},{142,-40}})));
+        transformation(extent={{102,-96},{142,-56}}), iconTransformation(extent={{100,-80},
+            {140,-40}})));
 
 protected
   Buildings.Controls.OBC.CDL.Reals.Subtract                   difference
@@ -142,24 +142,22 @@ protected
   "Logical NOT; true when ERW start command is off."
   annotation(Placement(transformation(extent = {{34, 40}, {54, 60}})));
 
-  Buildings.Controls.OBC.CDL.Reals.PID conPIDEneWheHea(
-    controllerType=controllerTypeEneWheHea,
-    Ti=TiEneWheHea,
-    k=kEneWheHea,
-    Td=TdEneWheHea)
-                  "PID loop if heating" annotation (Placement(visible=true,
-        transformation(
+  Buildings.Controls.OBC.CDL.Reals.PID conPIDHeaRec(
+    controllerType=controllerTypeHeaRec,
+    Ti=TiHeaRec,
+    k=kHeaRec,
+    Td=TdHeaRec) "PID loop for heating recovery" annotation (Placement(visible=
+          true, transformation(
         origin={-70,-38},
         extent={{-10,-10},{10,10}},
         rotation=0)));
 
-  Buildings.Controls.OBC.CDL.Reals.PID conPIDEneWheCoo(
-    controllerType=Buildings.Controls.OBC.CDL.Types.SimpleController.PID,
-    Ti=TiEneWheCoo,
-    k=kEneWheCoo,
-    Td=TdEneWheCoo)
-                  "PID loop if cooling" annotation (Placement(visible=true,
-        transformation(
+  Buildings.Controls.OBC.CDL.Reals.PID conPIDCooRec(
+    controllerType=controllerTypeCooRec,
+    Ti=TiCooRec,
+    k=kCooRec,
+    Td=TdCooRec) "PID loop for cooling recovery" annotation (Placement(visible=
+          true, transformation(
         origin={-66,-78},
         extent={{-10,-10},{10,10}},
         rotation=0)));
@@ -170,7 +168,8 @@ protected
 
 equation
   connect(not1.u,uEcoMod)  annotation (
-    Line(points = {{-28, 50}, {-122, 50}}, color = {255, 0, 255}));
+    Line(points={{-28,50},{-74,50},{-74,60},{-120,60}},
+                                           color = {255, 0, 255}));
 
   connect(mulAndEneRecRegOpe.y, yEneRecWheEna) annotation (Line(points={{88,
           18},{104,18},{104,20},{122,20}}, color={255,0,255}));
@@ -187,9 +186,9 @@ equation
   connect(swiTEneRec.y, yEneRecWheSpe)
     annotation (Line(points={{88,-76},{122,-76}}, color={0,0,127}));
   connect(uEcoMod, and1.u2) annotation (
-    Line(points = {{-122, 50}, {-94, 50}, {-94, 58}, {-66, 58}}, color = {255, 0, 255}));
+    Line(points={{-120,60},{-94,60},{-94,58},{-66,58}},          color = {255, 0, 255}));
 
-  connect(uFanSupPro, and1.u1) annotation (Line(points={{-122,80},{-94,80},{-94,
+  connect(uFanSupPro, and1.u1) annotation (Line(points={{-120,80},{-94,80},{-94,
           66},{-66,66}}, color={255,0,255}));
 
   connect(and1.y, or2.u1) annotation (
@@ -204,29 +203,29 @@ equation
   connect(or2.y, yBypDam)
     annotation (Line(points={{84,66},{122,66}}, color={255,0,255}));
 
-  connect(TAirSupSetEneWhe, conPIDEneWheCoo.u_s) annotation (Line(points={{-122,
-          -86},{-105,-86},{-105,-78},{-78,-78}}, color={0,0,127}));
+  connect(TAirSupSetEneWhe, conPIDCooRec.u_s) annotation (Line(points={{-122,-86},
+          {-105,-86},{-105,-78},{-78,-78}}, color={0,0,127}));
 
-  connect(TAirSupSetEneWhe, conPIDEneWheHea.u_s) annotation (Line(points={{-122,
-          -86},{-122,-84},{-82,-84},{-82,-38}}, color={0,0,127}));
+  connect(TAirSupSetEneWhe, conPIDHeaRec.u_s) annotation (Line(points={{-122,-86},
+          {-122,-84},{-82,-84},{-82,-38}}, color={0,0,127}));
 
-  connect(TAirSupEneWhe, conPIDEneWheHea.u_m) annotation (Line(points={{-122,-54},
+  connect(TAirSupEneWhe, conPIDHeaRec.u_m) annotation (Line(points={{-122,-54},
           {-102,-54},{-102,-50},{-70,-50}}, color={0,0,127}));
 
-  connect(TAirSupEneWhe, conPIDEneWheCoo.u_m) annotation (Line(points={{-122,-54},
+  connect(TAirSupEneWhe, conPIDCooRec.u_m) annotation (Line(points={{-122,-54},
           {-100,-54},{-100,-90},{-66,-90}}, color={0,0,127}));
 
-  connect(conPIDEneWheHea.y, max.u1)
+  connect(conPIDHeaRec.y, max.u1)
     annotation (Line(points={{-58,-38},{-58,-56},{-26,-56}}, color={0,0,127}));
 
-  connect(conPIDEneWheCoo.y, max.u2)
+  connect(conPIDCooRec.y, max.u2)
     annotation (Line(points={{-54,-78},{-54,-68},{-26,-68}}, color={0,0,127}));
 
   connect(TAirRet, difference.u1)
-    annotation (Line(points={{-122,20},{-122,8},{-68,8}}, color={0,0,127}));
+    annotation (Line(points={{-120,20},{-120,8},{-68,8}}, color={0,0,127}));
 
   connect(TAirOut, difference.u2)
-    annotation (Line(points={{-122,-18},{-122,-4},{-68,-4}}, color={0,0,127}));
+    annotation (Line(points={{-120,-20},{-120,-4},{-68,-4}}, color={0,0,127}));
 
   connect(difference.y, abs.u) annotation (
     Line(points = {{-44, 2}, {-38, 2}}, color = {0, 0, 127}));
@@ -237,7 +236,7 @@ equation
 
   connect(abs.y, hys.u)
     annotation (Line(points={{-14, 2}, {-4, 2}}, color={0,0,127}));
-  connect(uFanSupPro, mulAndEneRecRegOpe.u[1]) annotation (Line(points={{-122,80},
+  connect(uFanSupPro, mulAndEneRecRegOpe.u[1]) annotation (Line(points={{-120,80},
           {-70,80},{-70,88},{20,88},{20,15.6667},{64,15.6667}}, color={255,0,255}));
   connect(not1.y, mulAndEneRecRegOpe.u[2]) annotation (Line(points={{-4,50},{10,
           50},{10,18},{64,18}}, color={255,0,255}));
@@ -248,7 +247,11 @@ equation
     defaultComponentName = "ERWcon",
     Icon(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics={  Rectangle(fillColor = {255, 255, 255},
             fillPattern=
-FillPattern.Solid, extent = {{-100, 100}, {100, -100}}, radius = 10), Line(points = {{48, 0}, {-2, 0}}), Text(textColor = {28, 108, 200}, extent = {{-88, 180}, {92, 76}}, textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent = {{-98, 84}, {-54, 70}}, textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent = {{-98, 54}, {-62, 44}}, textString = "ecoMode"), Text(textColor = {28, 108, 200}, extent = {{-108, 24}, {-72, 14}}, textString = "raT"), Text(textColor = {28, 108, 200}, extent = {{-108, -12}, {-72, -22}}, textString = "oaT"), Text(textColor = {28, 108, 200}, extent = {{-106, -42}, {-70, -52}}, textString = "erwT"), Text(textColor = {28, 108, 200}, extent = {{-96, -70}, {-56, -82}}, textString = "supPrimSP"), Text(textColor = {28, 108, 200}, extent = {{62, -54}, {98, -64}}, textString = "erwSpeed"), Text(textColor = {28, 108, 200}, extent = {{60, 4}, {96, -6}}, textString = "erwStart"), Text(textColor = {28, 108, 200}, extent = {{60, 66}, {96, 56}}, textString = "bypDam"), Ellipse(lineColor = {28, 108, 200}, fillColor = {170, 255, 255},
+FillPattern.Solid, extent = {{-100, 100}, {100, -100}}, radius=0),    Line(points = {{48, 0}, {-2, 0}}), Text(textColor = {28, 108, 200}, extent={{-98,180},
+              {82,76}},                                                                                                                                                    textString = "%name", textStyle = {TextStyle.Bold}), Text(textColor = {28, 108, 200}, extent={{-98,86},
+              {-54,72}},                                                                                                                                                                                                        textString = "supFanProof"), Text(textColor = {28, 108, 200}, extent={{-98,64},
+              {-62,54}},                                                                                                                                                                                                        textString = "ecoMode"), Text(textColor = {28, 108, 200}, extent = {{-108, 24}, {-72, 14}}, textString = "raT"), Text(textColor = {28, 108, 200}, extent = {{-108, -12}, {-72, -22}}, textString = "oaT"), Text(textColor = {28, 108, 200}, extent={{-106,
+              -36},{-70,-46}},                                                                                                                                                                                                        textString = "erwT"), Text(textColor = {28, 108, 200}, extent = {{-96, -70}, {-56, -82}}, textString = "supPrimSP"), Text(textColor = {28, 108, 200}, extent = {{62, -54}, {98, -64}}, textString = "erwSpeed"), Text(textColor = {28, 108, 200}, extent = {{60, 4}, {96, -6}}, textString = "erwStart"), Text(textColor = {28, 108, 200}, extent = {{60, 66}, {96, 56}}, textString = "bypDam"), Ellipse(lineColor = {28, 108, 200}, fillColor = {170, 255, 255},
             fillPattern=
 FillPattern.Solid, extent = {{-14, 64}, {28, -68}}), Rectangle(lineColor = {170, 255, 255}, fillColor = {170, 255, 255},
             fillPattern=

@@ -46,7 +46,7 @@ block SupplyTemperatureSetpoint
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uDehMod
     "True when dehumidification mode is active." annotation (Placement(
         transformation(extent={{-142,-102},{-102,-62}}), iconTransformation(
-          extent={{-140,30},{-100,70}})));
+          extent={{-140,40},{-100,80}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TAirHig(
     final unit="K",
@@ -54,27 +54,29 @@ block SupplyTemperatureSetpoint
     final quantity="ThermodynamicTemperature")
     "Highest space temperature reported from all terminal units." annotation (
       Placement(transformation(extent={{-140,-28},{-100,12}}),
-        iconTransformation(extent={{-140,-36},{-100,4}})));
+        iconTransformation(extent={{-140,-40},{-100,0}})));
 
 
   // ---outputs---
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput ySupCooSet
     "Supply air temperature cooling set point." annotation (Placement(
-        transformation(extent={{100,28},{140,68}}), iconTransformation(extent={{100,28},
-            {140,68}})));
+        transformation(extent={{100,20},{140,60}}), iconTransformation(extent={{100,20},
+            {140,60}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput ySupHeaSet
     "Supply air temperature heating set point" annotation (Placement(
-        transformation(extent={{100,-58},{140,-18}}), iconTransformation(extent={{100,-58},
-            {140,-18}})));
+        transformation(extent={{100,-60},{140,-20}}), iconTransformation(extent={{100,-60},
+            {140,-20}})));
 
   CDL.Interfaces.RealOutput ySupSet
-    annotation (Placement(transformation(extent={{100,-6},{140,34}})));
+    annotation (Placement(transformation(extent={{100,-18},{140,22}}),
+        iconTransformation(extent={{100,-18},{140,22}})));
   CDL.Interfaces.RealInput TZonHeaSet "Zone heating Setpoint"
-    annotation (Placement(transformation(extent={{-140,-60},{-100,-20}})));
+    annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
+        iconTransformation(extent={{-140,-80},{-100,-40}})));
   CDL.Interfaces.RealInput TZonCooSet "Zone Cooling Setpoint" annotation (
-      Placement(transformation(extent={{-140,10},{-100,50}}),
-        iconTransformation(extent={{-140,10},{-100,50}})));
+      Placement(transformation(extent={{-140,0},{-100,40}}),
+        iconTransformation(extent={{-140,0},{-100,40}})));
 protected
   Buildings.Controls.OBC.CDL.Reals.Line lin
     "Linear converter resets primary supply set point."
@@ -131,11 +133,11 @@ equation
     annotation (Line(points={{44,-40},{64,-40}}, color={0,0,127}));
 
   connect(addCooSet.y, ySupCooSet)
-    annotation (Line(points={{44,36},{82,36},{82,48},{120,48}},
+    annotation (Line(points={{44,36},{82,36},{82,40},{120,40}},
                                                 color={0,0,127}));
 
   connect(swiDeh.y, ySupHeaSet)
-    annotation (Line(points={{88,-32},{106,-32},{106,-38},{120,-38}},
+    annotation (Line(points={{88,-32},{106,-32},{106,-40},{120,-40}},
                                                   color={0,0,127}));
 
   connect(addCooSet.y, swiDeh.u1) annotation (Line(points={{44,36},{54,36},{54,-24},
@@ -150,17 +152,21 @@ equation
   connect(TAirSupLowSet.y, lin.f2) annotation (Line(points={{-68,-50},{-52,-50},
           {-52,-6},{-44,-6}}, color={0,0,127}));
 
-  connect(lin.y, ySupSet) annotation (Line(points={{-20,2},{42,2},{42,14},{120,
-          14}}, color={0,0,127}));
-  connect(TZonHeaSet, lin.x2) annotation (Line(points={{-120,-40},{-96,-40},{
+  connect(lin.y, ySupSet) annotation (Line(points={{-20,2},{42,2},{42,2},{120,2}},
+                color={0,0,127}));
+  connect(TZonHeaSet, lin.x2) annotation (Line(points={{-120,-60},{-96,-60},{
           -96,-12},{-64,-12},{-64,-2},{-44,-2}}, color={0,0,127}));
-  connect(TZonCooSet, lin.x1) annotation (Line(points={{-120,30},{-92,30},{-92,
+  connect(TZonCooSet, lin.x1) annotation (Line(points={{-120,20},{-92,20},{-92,
           48},{-50,48},{-50,10},{-44,10}}, color={0,0,127}));
   annotation (defaultComponentName="TSupSetpt",
-    Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(extent={{-90,180},{90,76}},lineColor={28,108,200},textStyle={TextStyle.Bold},textString="%name"),Rectangle(extent={{
-              -100,98},{100,-102}},                                                                                                                                                                            lineColor={179,151,128},radius=10,fillColor={255,255,255},
-            fillPattern=
-FillPattern.Solid),Text(extent={{-94,-40},{-40,-58}},lineColor={28,108,200},textString="highSpaceT"),Text(extent={{-94,60},{-40,42}},lineColor={28,108,200},textString="dehumMode"),Text(extent={{40,50},{94,32}},lineColor={28,108,200},
+    Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+        Rectangle(
+          extent={{-100,100},{100,-100}},
+          lineColor={0,0,0},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid),                       Text(extent={{-90,180},{90,76}},lineColor={28,108,200},textStyle={TextStyle.Bold},textString="%name"),
+                   Text(extent={{-94,-50},{-40,-68}},lineColor={28,108,200},textString="highSpaceT"),Text(extent={{-96,70},
+              {-42,52}},                                                                                                             lineColor={28,108,200},textString="dehumMode"),Text(extent={{40,50},{94,32}},lineColor={28,108,200},
 textString="supCooSP"),Text(extent={{42,-30},{96,-48}},
 lineColor={28,108,200},textString="supHeaSP"),Rectangle(extent={{14,22},{18,-22}},lineColor={0,140,72},fillColor={0,140,72},
             fillPattern=
