@@ -246,10 +246,13 @@ equation
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"),
     Documentation(info="<html>
-<p>This model simulates Buildings.Examples.ChilledBeamSystem.BaseClasses.TestBed.</p>
-<p>It consists of a dedicated outdoor air system(DOAS) controller(DOAScon), the chilled beam test bed (chiBeaTesBed) with a 5 zone model, a system controller (sysCon),and a terminal controller(terCon). </p>
-<p>The HVAC system consists a constant air volume(CAV) system with an energy recovery wheel, and heating and cooling coils in the air handling unit. The DOAS controller operates the supply fan, energy recovery wheel, as well as the cooling and heating coils</p>
-<p>The chilled beam system is serviced by a single chilled water loop with an ideal source which is operated by the system controller.There are 5 zones in the chiBeaTesBed, each with an individual chilled beam manifold, an air circulation fan for cooling, and CAV terminal box with a hot water reheat coil and an exponential damper. The terminal controller operates the zone constant air volume terminal box as well as the zone chilled beam manifold control valve.</p>
-<p><br>See the model <a href=\"modelica://Buildings.Controls.OBC.FDE.DOAS.Controller\">Buildings.Controls.OBC.FDE.DOAS.Controller</a> for a description of the air handling unit, and see the model <a href=\"modelica://Buildings.Examples.VAVReheat.BaseClasses.VAVReheatBox\">Buildings.Examples.VAVReheat.BaseClasses.VAVReheatBox</a> for a description of the VAV reheat terminal and <a href=\"modelica://Buildings.Examples.ChilledBeamSystem.BaseClasses.ZoneModel_simplified\">Buildings.Examples.ChilledBeamSystem.BaseClasses.ZoneModel_simplified </a>for a description of the zone model.</p>
+<p>This model simulates Buildings.Examples.ChilledBeamSystem.BaseClasses.TestBed, a chilled beam system with five thermal zones. Key components include:</p>
+<ol>
+<li><b>DOAS Controller <code>(DOAScon)</code> :</b> Operates the supply fan, energy recovery wheel, cooling coil, and heating coil to ensure optimal outdoor air condtions are delivered</li>
+<li><b>System Controller <code>(sysCon)</code>:</b> Regulates the single chilled water loop that serves the chilled beam system, supply chilled water from an ideal source</li>
+<li><b>Terminal Controller <code>(terCon)</code>: </b>Controls each of the zone&apos;s constant air volume (CAV) terminal box and the chilled beam manifold control valve.</li>
+</ol>
+<p>The HVAC system consists a constant air volume(CAV) system with an energy recovery wheel, heating, and cooling coils in the air handling unit. </p>
+<p>The chilled beam system is serviced by a single chilled water loop with an ideal source operated by the system controller. Each zone has a chilled beam manifold, an air circulation fan for cooling, and CAV terminal box with a hot water reheat coil and an exponential damper. The terminal controller operates the zone CAV terminal box as well as the zone chilled beam manifold control valve.</p>
 </html>"));
 end ClosedLoopValidation;
