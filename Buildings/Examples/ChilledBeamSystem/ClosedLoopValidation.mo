@@ -248,11 +248,12 @@ equation
     Documentation(info="<html>
 <p>This model simulates Buildings.Examples.ChilledBeamSystem.BaseClasses.TestBed, a chilled beam system with five thermal zones. Key components include:</p>
 <ol>
-<li><b>DOAS Controller <code>(DOAScon)</code> :</b> Operates the supply fan, energy recovery wheel, cooling coil, and heating coil to ensure optimal outdoor air condtions are delivered</li>
-<li><b>System Controller <code>(sysCon)</code>:</b> Regulates the single chilled water loop that serves the chilled beam system, supply chilled water from an ideal source</li>
-<li><b>Terminal Controller <code>(terCon)</code>: </b>Controls each of the zone&apos;s constant air volume (CAV) terminal box and the chilled beam manifold control valve.</li>
+<li><b>DOAS Controller <span style=\"font-family: Courier New;\">(DOAScon)</span> :</b> Operates the supply fan, energy recovery wheel, cooling coil, and heating coil to ensure optimal outdoor air condtions are delivered</li>
+<li><b>System Controller <span style=\"font-family: Courier New;\">(sysCon)</span>:</b> Regulates the single chilled water loop that serves the chilled beam system, supply chilled water from an ideal source</li>
+<li><b>Terminal Controller <span style=\"font-family: Courier New;\">(terCon)</span>: </b>Controls each of the zone&apos;s constant air volume (CAV) terminal box and the chilled beam manifold control valve.</li>
 </ol>
-<p>The HVAC system consists a constant air volume(CAV) system with an energy recovery wheel, heating, and cooling coils in the air handling unit. </p>
-<p>The chilled beam system is serviced by a single chilled water loop with an ideal source operated by the system controller. Each zone has a chilled beam manifold, an air circulation fan for cooling, and CAV terminal box with a hot water reheat coil and an exponential damper. The terminal controller operates the zone CAV terminal box as well as the zone chilled beam manifold control valve.</p>
+<p>The HVAC system is a constant air volume(CAV) system with an energy recovery wheel, economizer, and heating, and cooling coils in the air handling unit. The figure down below shows a schematic of the HVAC system.<img src=\"modelica://Buildings/Resources/Images/Examples/ChilledBeamSystem/chilledBeam_terminalControlSchematic.svg\" alt=\"image\"/> </p>
+<p>The chilled beam system is serviced by a single chilled water loop with an ideal source operated by the system controller. Each zone has a chilled beam manifold, an air circulation fan for cooling, and CAV terminal box with a hot water reheat coil and an exponential damper. The terminal controller operates the zone CAV terminal box as well as the zone chilled beam manifold control valve. The figure below shows  a schematic of the chilled beam system.</p>
+<img src=\"modelica://Buildings/Resources/Images/Examples/ChilledBeamSystem/chilledBeam_systemControlSchematic.svg\" alt=\"image\"/> </p>
 </html>"));
 end ClosedLoopValidation;
