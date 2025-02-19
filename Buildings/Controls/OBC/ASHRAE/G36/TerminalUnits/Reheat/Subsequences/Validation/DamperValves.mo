@@ -11,7 +11,7 @@ model DamperValves
   Buildings.Controls.OBC.CDL.Reals.Sources.Ramp uCoo(
     final height=-1,
     final duration=3600,
-    final offset=1,
+    final offset=100,
     final startTime=900) "Cooling control signal"
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Buildings.Controls.OBC.CDL.Reals.Sources.Constant TZon(
