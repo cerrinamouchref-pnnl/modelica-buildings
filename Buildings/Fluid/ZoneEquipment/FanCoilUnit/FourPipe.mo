@@ -266,11 +266,11 @@ model FourPipe "System model for a four-pipe fan coil unit"
     "Supply air temperature sensor"
     annotation (Placement(transformation(extent={{240,-20},{260,0}})));
 
-  Buildings.Fluid.Movers.FlowControlled_m_flow fan(
+  Movers.Preconfigured.FlowControlled_m_flow   fan(
     redeclare final package Medium = MediumA,
     final energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+    addPowerToMedium=false,
     final m_flow_nominal=mAir_flow_nominal,
-    final per=fanPer,
     final dp_nominal=dpAir_nominal,
     dpMax=200)
     "Supply fan"
